@@ -416,5 +416,15 @@ $RECYCLE.BIN/
 *.lnk
 
 
+################################################################################
+#                                 Text editors                                 #
+################################################################################
+
+########################################
+#               VS Code                #
+########################################
+.vscode/
+
+
 ## Acknowledgements
 # Many thanks to `https://gitignore.io/`, written and maintained by Joe Blau, which contributed much material to this gitignore file.
