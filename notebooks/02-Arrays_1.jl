@@ -177,7 +177,7 @@ md"""
 	
 	The four following examples show array creation.
 	!!! warning ""
-		Notice that [1, 2, 3] (with commas) gives a 1D Vector, while [1; 2; 3] (with semicolons) gives a 2D, 3x1 Matrix. The 1D Vector is "dimensionless" and often acts like a column vector in math operations, which is very convenient.
+		Notice that [1, 2, 3], with commas, gives a 1D Vector, while [1; 2; 3], with semicolons, gives a 2D, 3x1 Matrix. The 1D Vector is "dimensionless" and often acts like a column vector in math operations, which is very convenient.
 """
 
 # ╔═╡ 5a1ad46c-d500-4762-920f-812ebff350e4
@@ -579,7 +579,7 @@ end
 # ╟─2675d602-810c-4320-971c-902c3327a5cb
 # ╟─346cb64d-3c89-44d1-9edb-06354152243a
 # ╟─977537f7-3358-4598-afb8-3d421c12f565
-# ╟─11832b60-4906-4d22-960b-0b16b6634011
+# ╠═11832b60-4906-4d22-960b-0b16b6634011
 # ╟─5a1ad46c-d500-4762-920f-812ebff350e4
 # ╟─40481932-af01-4981-8911-e6e35121ff9e
 # ╟─8e2946d7-bdd1-4c87-9831-2b4bf2d53a0f
