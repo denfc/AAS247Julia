@@ -236,7 +236,10 @@ md"""
 	This is where the magic happens. What happens if you chain multiple "dotted" operations?
 
 	```julia
-		A = rand(1000) B = rand(1000) C = rand(1000) D = A .* B .+ C
+	A = rand(1000)
+	B = rand(1000)
+	C = rand(1000)
+	D = A .* B .+ C
 	```
 	Let's compare how Python (with NumPy) and Julia handle this.
 	
