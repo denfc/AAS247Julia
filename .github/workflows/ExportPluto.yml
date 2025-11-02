@@ -53,7 +53,9 @@ jobs:
         shell: julia --color=yes {0}
         run: |
           import PlutoSliderServer
-          PlutoSliderServer.github_action("notebooks";
+          PlutoSliderServer.github_action(
+            "notebooks";
+            Export_output_dir="notebooks",
             Export_cache_dir="pluto_state_cache",
             Export_baked_notebookfile=false,
             Export_baked_state=false,
