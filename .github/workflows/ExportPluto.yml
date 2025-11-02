@@ -43,7 +43,7 @@ jobs:
 
       - name: Install DrWatson.jl and PlutoSliderServer.jl in runner environment
         shell: julia --color=yes {0}
-        run: using Pkg; Pkg.add(["DrWatson.jl","PlutoSliderServer"]);
+        run: using Pkg; Pkg.add(["DrWatson","PlutoSliderServer"]);
 
       - name: Instantiate shared notebook environment
         shell: julia --color=yes --project {0}
