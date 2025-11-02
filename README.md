@@ -1,5 +1,7 @@
 # AAS247Julia
 
+[![Rendered Pluto.jl notebooks](https://img.shields.io/badge/Rendered_Pluto.jl_notebooks-blue)](https://denfc.github.io/AAS245Julia/notebooks)
+
 This code base is using the [Julia Language](https://julialang.org/) and
 [DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
 to make a reproducible scientific project named AAS247Julia.
