@@ -18,8 +18,6 @@ end
 
 # ╔═╡ c10a2907-d677-4280-81fe-4f438a0023c6
 begin
-	import Pkg;
-	Pkg.add("DrWatson")
 	using DrWatson
 	md" ###### `using` DrWatson"
 end
@@ -34,9 +32,6 @@ end
 
 # ╔═╡ 1c4e354c-ddd8-4a6b-bbe6-d8d3b917955d
 begin # using packages
-	Pkg.add("PlutoUI")
-	Pkg.add("HypertextLiteral")
-	Pkg.add("Revise")
 	using PlutoUI
 	using HypertextLiteral
 	using Revise
