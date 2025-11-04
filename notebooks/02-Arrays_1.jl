@@ -289,9 +289,9 @@ md"""
 begin
 	A = [1 2; 3 4]
 	B = [5 6; 7 8]
+
+	# Element-wise product
 	C = A .* B
-	println(C)
-	D = A*B
 end
 
 # ╔═╡ 29e28885-d969-4e27-b5d3-866eb25302ab
@@ -562,6 +562,18 @@ let
 	"""
 end
 
+# ╔═╡ 9ff79fb3-7415-44db-9427-853296f9fb6e
+# ╠═╡ disabled = true
+#=╠═╡
+	# Matrix multiplication
+	D = A * B
+	# 2×2 Matrix{Int64}:
+  ╠═╡ =#
+
+# ╔═╡ 33f40ccb-335e-4a3e-97b7-5bfeeef7b7e1
+	# Matrix multiplication
+	D = A * B
+
 # ╔═╡ Cell order:
 # ╟─f7cd76de-4427-4dc3-9d12-9931b27a2956
 # ╟─e984391b-0c01-4dc8-85aa-3593027e8530
@@ -585,7 +597,9 @@ end
 # ╠═d5268417-62f9-4fa8-beac-c4d4b9007223
 # ╟─8a5d4ccf-a3b2-4373-822d-dbf5254bf4b0
 # ╟─65151aba-d946-401d-8cca-1874f38146f2
-# ╟─d46a4d5c-4324-48c8-9851-d486495ec5dc
+# ╠═d46a4d5c-4324-48c8-9851-d486495ec5dc
+# ╠═9ff79fb3-7415-44db-9427-853296f9fb6e
+# ╠═33f40ccb-335e-4a3e-97b7-5bfeeef7b7e1
 # ╟─29e28885-d969-4e27-b5d3-866eb25302ab
 # ╟─974bb44d-420c-460d-b626-707909568554
 # ╟─e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
