@@ -50,14 +50,6 @@ TableOfContents(title = notebookName, depth = 6)
 # ╔═╡ 2a1327da-b77f-4ebb-8627-d786de6c69dc
 # is this change uploading?
 
-# ╔═╡ b3c88a20-d092-40e8-9e01-95f093048318
-md"""
-###### Cell width sliders
-`cellWidth` $(@bind cellWidth Slider(500:25:1500, show_value=true, default=800))
-
-`Left-Margin` $(@bind leftMargin Slider(-250:25:100, show_value=true, default=25))
-"""
-
 # ╔═╡ 650767d3-3e8e-4351-a249-8e11c1037385
 begin
 	@bind screenWidth @htl("""
@@ -80,6 +72,14 @@ begin
 	Widening cell.
     """)
 end
+
+# ╔═╡ b3c88a20-d092-40e8-9e01-95f093048318
+md"""
+###### Cell width sliders
+`cellWidth` $(@bind cellWidth Slider(500:25:1500, show_value=true, default=800))
+
+`Left-Margin` $(@bind leftMargin Slider(-250:25:100, show_value=true, default=25))
+"""
 
 # ╔═╡ e133c0fe-39b7-400e-9e20-f7506603e17d
 md" ##### Begin New Coding Here."
@@ -217,7 +217,6 @@ md"""
 	The dot (`.`) operator tells Julia: "Apply this operation to _every single element_ of the array." We call using the dot operator "broadcasting".
 
 	- `A .+ 1` means `[A[1]+1, A[2]+1, A[3]+1]` $\rightarrow$ `[2, 3, 4]`
-	- `sin.(A)` means `[sin(A[1]), sin(A[2]), sin(A[3])]`
 	- `A .* B` means element-by-element multiplication.
 
 	You can "dot" any function, including your own: my\_function.(my_array).
@@ -583,7 +582,7 @@ end
 # ╟─40481932-af01-4981-8911-e6e35121ff9e
 # ╟─8e2946d7-bdd1-4c87-9831-2b4bf2d53a0f
 # ╟─3230a371-8901-41a0-8bd8-36965851eaca
-# ╟─d5268417-62f9-4fa8-beac-c4d4b9007223
+# ╠═d5268417-62f9-4fa8-beac-c4d4b9007223
 # ╟─8a5d4ccf-a3b2-4373-822d-dbf5254bf4b0
 # ╟─65151aba-d946-401d-8cca-1874f38146f2
 # ╟─d46a4d5c-4324-48c8-9851-d486495ec5dc
