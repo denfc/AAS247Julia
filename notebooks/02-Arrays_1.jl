@@ -47,6 +47,14 @@ end
 # ╔═╡ 0fe8eafe-871b-40a2-ad45-3a27e0566533
 TableOfContents(title = notebookName, depth = 6)
 
+# ╔═╡ b3c88a20-d092-40e8-9e01-95f093048318
+md"""
+###### Cell width sliders
+`cellWidth` $(@bind cellWidth Slider(500:25:1500, show_value=true, default=800))
+
+`Left-Margin` $(@bind leftMargin Slider(-250:25:100, show_value=true, default=25))
+"""
+
 # ╔═╡ 650767d3-3e8e-4351-a249-8e11c1037385
 begin
 	@bind screenWidth @htl("""
@@ -69,14 +77,6 @@ begin
 	Widening cell.
 	""")
 end
-
-# ╔═╡ b3c88a20-d092-40e8-9e01-95f093048318
-md"""
-###### Cell width sliders
-`cellWidth` $(@bind cellWidth Slider(500:25:1500, show_value=true, default=800))
-
-`Left-Margin` $(@bind leftMargin Slider(-250:25:100, show_value=true, default=25))
-"""
 
 # ╔═╡ e133c0fe-39b7-400e-9e20-f7506603e17d
 md" ##### Begin New Coding Here."
