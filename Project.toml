@@ -1,15 +1,21 @@
 name = "AAS247Julia"
 
 [deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 DrWatson = "634d3b9d-ee7a-5ddf-bec9-22491ea816e1"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
+CSV = "0.10"
+DelimitedFiles = "1"
 DrWatson = "2.19.1"
 HypertextLiteral = "0.9"
+LinearAlgebra = "1"
 Pluto = "0.20.20"
 PlutoUI = "0.7"
 Revise = "3"
