@@ -16,27 +16,14 @@ macro bind(def, element)
     #! format: on
 end
 
-# ╔═╡ ea7ad263-dcf2-474e-84b5-6f1ceb2b8f4e
-begin
-	# According to Copilot, "By separating Pkg.add (installation) and using (import) into different cells, you minimize risk of accidentally reinstalling packages every time the notebook is run."
-	import Pkg
-	Pkg.add("PlutoUI")
-	Pkg.add("HypertextLiteral")
-	Pkg.add("Revise")
-end
-
 # ╔═╡ dbb04803-2fc3-4455-99e6-ac78360a200f
 using DrWatson
 
 # ╔═╡ 533bf41f-0dc3-42e3-af5c-344163e950b1
-@quickactivate
+@quickactivate "AAS247Julia"
 
 # ╔═╡ e186986e-ae37-47ad-b44c-2d7d1078b3cd
-begin
-	using PlutoUI
-	using HypertextLiteral
-	using Revise
-end
+using PlutoUI, HypertextLiteral, Revise
 
 # ╔═╡ f7cd76de-4427-4dc3-9d12-9931b27a2956
 md" [Julia Markdown Doc](https://docs.julialang.org/en/v1/stdlib/Markdown)"
@@ -570,7 +557,6 @@ end
 # ╟─e984391b-0c01-4dc8-85aa-3593027e8530
 # ╠═dbb04803-2fc3-4455-99e6-ac78360a200f
 # ╠═533bf41f-0dc3-42e3-af5c-344163e950b1
-# ╠═ea7ad263-dcf2-474e-84b5-6f1ceb2b8f4e
 # ╠═e186986e-ae37-47ad-b44c-2d7d1078b3cd
 # ╠═0fe8eafe-871b-40a2-ad45-3a27e0566533
 # ╟─650767d3-3e8e-4351-a249-8e11c1037385
