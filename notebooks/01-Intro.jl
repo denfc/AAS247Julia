@@ -542,11 +542,7 @@ end
 """
 
 # ╔═╡ d7ecfac4-8b9b-4b4b-b258-429f417380cc
-begin
-	xlarge = rand(2^20)
-	ylarge = rand(2^20)
-	outlarge = rand(2^20)
-end
+
 
 # ╔═╡ b186c2fa-0ce2-4941-a9fa-a055de7f4ebf
 md"""
