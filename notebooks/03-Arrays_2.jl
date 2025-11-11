@@ -4,14 +4,23 @@
 using Markdown
 using InteractiveUtils
 
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    #! format: off
+    return quote
+        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
+        el
+    end
+    #! format: on
+end
+
 # ╔═╡ 606d3a60-b987-11f0-b09c-ab2e3fa2835d
 using DrWatson
 
 # ╔═╡ 3e21eeef-836b-468e-b058-9c26d8f75f01
 @quickactivate "AAS247Julia"
-
-# ╔═╡ 157fdc89-ff6f-4e6c-99b0-fc952daa24ef
-using PlutoUI
 
 # ╔═╡ 6f4eb353-2426-4a7c-b9e0-431727016bc2
 using DelimitedFiles
@@ -22,11 +31,11 @@ using CSV
 # ╔═╡ 056a608f-18cf-4bcb-8f7e-e0c7a42692f4
 using Downloads
 
-# ╔═╡ c47564b1-751b-46e0-883f-86fc11f6abb8
-notebookName = "Arrays 2";
+# ╔═╡ 218c497d-d81a-40fe-b47a-5c59dbab2f09
+using Markdown
 
-# ╔═╡ 56274a04-6ace-477a-a4f4-3acad1a85809
-TableOfContents(title = notebookName)
+# ╔═╡ 157fdc89-ff6f-4e6c-99b0-fc952daa24ef
+using PlutoUI, HypertextLiteral
 
 # ╔═╡ 1282f0b4-41a9-46d1-adb2-68638c76da87
 md"""
@@ -34,7 +43,10 @@ md"""
 """
 
 # ╔═╡ 87c9962d-0a48-4772-ae15-7cd5bf9b21f4
-DelimitedFiles.readdlm(datadir("mpcorb.dat"))
+mat = DelimitedFiles.readdlm(datadir("mpcorb.dat"))
+
+# ╔═╡ 2f06b1c3-3ba6-4abf-aa72-9a8a8baf1556
+mat[2:end,:]
 
 # ╔═╡ 79669758-04c2-4617-bdcf-f3d031c9b226
 md"""
@@ -134,15 +146,63 @@ rolls[mask]
 # ╔═╡ fdd2befd-4317-4710-b7a2-da5c9260cc40
 damages[mask]
 
+# ╔═╡ c5e7ec5b-fc9b-46fb-8708-4cf9d80387e3
+md"""
+# Problems
+"""
+
+# ╔═╡ cee1d2fd-cea3-4fbf-bdd6-1d0286f84f69
+md"""
+## Cartesian indexing
+"""
+
+# ╔═╡ 9f6c71ca-6de0-453d-9ad3-4996e2a2001b
+md"""
+# Notebook setup
+"""
+
+# ╔═╡ c47564b1-751b-46e0-883f-86fc11f6abb8
+notebookName = "Arrays 2";
+
+# ╔═╡ d046592d-9786-4675-b8bd-26848fcb6a50
+"# $notebookName" |> Markdown.parse
+
+# ╔═╡ 56274a04-6ace-477a-a4f4-3acad1a85809
+TableOfContents()
+
+# ╔═╡ ed2f25e4-ffcf-4e6e-bf18-046906f05a84
+cellWidthSlider = @bind cellWidth Slider(500:25:1500, show_value=true, default=800);
+
+# ╔═╡ a2dfca01-81f6-45e4-aa5e-da24c8ae5871
+leftMarginSlider = @bind leftMargin Slider(-250:25:100, show_value=true, default=25);
+
+# ╔═╡ 6dab8c14-64c1-4518-aea4-c3502787851e
+md"""
+###### Cell width sliders
+`cellWidth` $(cellWidthSlider)
+
+`Left-Margin` $(leftMarginSlider)
+"""
+
+# ╔═╡ 62d434d4-93bb-49f1-a6ee-a7499b58aa92
+@htl("""
+<style>
+pluto-notebook {
+	margin-left: $(leftMargin)px;
+	# margin: auto;
+	width: $(cellWidth)px;
+}
+</style>
+Widening cell
+""")
+
 # ╔═╡ Cell order:
-# ╠═606d3a60-b987-11f0-b09c-ab2e3fa2835d
-# ╠═3e21eeef-836b-468e-b058-9c26d8f75f01
-# ╟─157fdc89-ff6f-4e6c-99b0-fc952daa24ef
-# ╟─c47564b1-751b-46e0-883f-86fc11f6abb8
-# ╠═56274a04-6ace-477a-a4f4-3acad1a85809
+# ╟─d046592d-9786-4675-b8bd-26848fcb6a50
+# ╟─6dab8c14-64c1-4518-aea4-c3502787851e
 # ╟─1282f0b4-41a9-46d1-adb2-68638c76da87
 # ╠═6f4eb353-2426-4a7c-b9e0-431727016bc2
 # ╠═87c9962d-0a48-4772-ae15-7cd5bf9b21f4
+# ╠═2f06b1c3-3ba6-4abf-aa72-9a8a8baf1556
 # ╟─79669758-04c2-4617-bdcf-f3d031c9b226
 # ╠═34562085-6ce2-44d6-84e6-056e9586117c
 # ╠═056a608f-18cf-4bcb-8f7e-e0c7a42692f4
@@ -160,7 +220,7 @@ damages[mask]
 # ╟─f13e35cf-d75f-4d56-82d6-1e1d52934512
 # ╠═f8998c4d-d9ca-40bb-8185-8338faa3803f
 # ╠═7f84fd65-2483-4a20-85aa-0461603459ff
-# ╠═07be6f13-de1f-495e-b369-a28ec20de28e
+# ╟─07be6f13-de1f-495e-b369-a28ec20de28e
 # ╠═631fed46-0bb2-44d8-bfc9-6d9929c17ab9
 # ╟─bfa7975e-f206-4179-93eb-e0236855c981
 # ╟─d1e8e027-ce75-4cee-bbbd-f977e7c4d442
@@ -169,3 +229,15 @@ damages[mask]
 # ╠═3d8f63d0-47d8-41bd-9115-0bd67a739fb2
 # ╠═84bc669b-bfbb-4880-bbcd-3712b1e3f94e
 # ╠═fdd2befd-4317-4710-b7a2-da5c9260cc40
+# ╟─c5e7ec5b-fc9b-46fb-8708-4cf9d80387e3
+# ╟─cee1d2fd-cea3-4fbf-bdd6-1d0286f84f69
+# ╟─9f6c71ca-6de0-453d-9ad3-4996e2a2001b
+# ╠═606d3a60-b987-11f0-b09c-ab2e3fa2835d
+# ╠═3e21eeef-836b-468e-b058-9c26d8f75f01
+# ╠═218c497d-d81a-40fe-b47a-5c59dbab2f09
+# ╠═157fdc89-ff6f-4e6c-99b0-fc952daa24ef
+# ╠═c47564b1-751b-46e0-883f-86fc11f6abb8
+# ╠═56274a04-6ace-477a-a4f4-3acad1a85809
+# ╟─62d434d4-93bb-49f1-a6ee-a7499b58aa92
+# ╠═ed2f25e4-ffcf-4e6e-bf18-046906f05a84
+# ╠═a2dfca01-81f6-45e4-aa5e-da24c8ae5871
