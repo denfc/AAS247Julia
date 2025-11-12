@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.20
+# v0.20.21
 
 #> [frontmatter]
 #> title = "01: Intro"
@@ -30,14 +30,14 @@ end
 
 # ╔═╡ 38ead816-0375-4605-a833-6464485aa0d6
 md"""
-## Historical Context
+### Historical Context
 
 Twenty-nine years ago at the Astronomical Data Analysis Software and Systems (ADASS) VI meeting (1996), Harrington and Barrett hosted a Birds-of-a-Feather session entitled [Interactive Data Analysis Environments](https://www.cv.nrao.edu/adass/adassVI/harringtonj.html). Based on their review of [21 interpreted programming languages](https://htmlpreview.github.io/?https://github.com/barrettp/AAS245Julia/blob/main/Interactive%20Data%20Analysis%20Environments.html) such as Glish, GUILE, IDL, IRAF, Matlab, Perl, Python, and Tcl; they recommended that Python be considered the primary language for astronomical data analysis. The primary reasons were that the language was simple to learn, yet powerful; well supported by the programming community; and had FORTRAN-like arrays. However, for good performance, the multi-dimensional arrays needed to be written in a compiled language, namely C. So Numerical Python suffered from the "two language problem".
 """
 
 # ╔═╡ 95cfbabc-5e7c-481b-853c-6d06baa577b6
 md"""
-### Why Julia?
+#### Why Julia?
 
 In 2009, four faculty members[^1] at MIT, who were not satisfied with the state of scientific computing, decided to develop a general purpose, high performance, scientific programming language. After ten years of development, they release Julia Version 1.0 on August 8, 2018. Their aims were to create an open-source interpreted language that was concise, extensible, and high performance.
 
@@ -46,7 +46,7 @@ In 2009, four faculty members[^1] at MIT, who were not satisfied with the state 
 
 # ╔═╡ 8e597a38-6e41-499f-af06-f9223b8827de
 md"""
-### What Differentiates Julia From Other Languages?
+#### What Differentiates Julia From Other Languages?
 
 * Julia is **composable**.
 * Julia is **concise**.
@@ -58,19 +58,19 @@ md"""
 
 # ╔═╡ 1cc401a1-6d3a-40e5-a4fc-012caa913369
 md"""
-### Why Have I migrated to Julia?
+#### Why Have I migrated to Julia?
 
 Although an early advocate and developer of Numerical Python (now NumPy), Matplotlib, and PyFits (now astropy.io.fits); I knew its limitations, namely, the two language problem. Therefore, once a better scientific programming language came along, I was prepared to migrate to that language. I believe that **Julia is that language.**
 """
 
 # ╔═╡ b1ed2c4e-f5fa-4e5e-87d8-7af6f80a83ca
 md"""
-## Getting Started
+### Getting Started
 """
 
 # ╔═╡ 7f3357bc-4103-4a35-af21-9c86f5a0ec2f
 md"""
-### Starting Julia
+#### Starting Julia
 
 Enter `julia` at the terminal prompt. Set the number of threads to `auto`. Threads will be discussed later in Parallel Computing.
 
@@ -96,7 +96,7 @@ julia>
 md"""
 ---
 
-### Stopping Julia
+#### Stopping Julia
 
 To exit Julia, enter `<Ctrl-D>` or `exit()`
 
@@ -112,7 +112,7 @@ julia> <Ctrl-D>
 md"""
 ---
 
-### The command line  or  REPL (Read-Eval-Print-Loop)"""
+#### The command line  or  REPL (Read-Eval-Print-Loop)"""
 
 # ╔═╡ f646ca14-c01e-47ee-8e2b-052d9db0985b
 md"""
@@ -159,14 +159,14 @@ a + b
 
 # ╔═╡ 419a6dec-1db0-477f-911f-049223b5674f
 md"""
-## Other REPL Modes
+### Other REPL Modes
 
 The Julia REPL supports several different modes, outlined below, accessible by a keystroke. Hit the `delete` or `backspace` key to return to the normal `julia>` REPL.
 """
 
 # ╔═╡ 85f2bec3-0095-4bbc-93ef-48ab97094244
 md"""
-### Help: `?`
+#### Help: `?`
 
 For help mode:
 
@@ -204,7 +204,7 @@ julia> String(take!(io))
 md"""
 ---
 
-### Shell: `;`
+#### Shell: `;`
 
 For shell mode:
 
@@ -220,7 +220,7 @@ shell> pwd
 md"""
 ---
 
-### Package Manager: `]`
+#### Package Manager: `]`
 
 For package mode:
 
@@ -301,12 +301,12 @@ pkg> gc
 
 # ╔═╡ 563f07ad-6aed-495e-85fb-bae4a1755ac2
 md"""
-## Some simple programming examples
+### Some simple programming examples
 """
 
 # ╔═╡ 0f94b21c-364f-488e-aff3-28c4b39a3844
 md"""
-### Measurements and Unicode
+#### Measurements and Unicode
 
 The [Measurements.jl](https://juliaphysics.github.io/Measurements.jl/stable/) package enables variables to have both values and errors. Let's add Measurements using the `using` statement:
 
@@ -367,7 +367,7 @@ md"""
 md"""
 ---
 
-### Units
+#### Units
 
 Let's add another package called [Unitful.jl](https://juliaphysics.github.io/Unitful.jl/stable/), which enables attaching units to variables:
 
@@ -447,7 +447,7 @@ And 2π is the constant 2π.
 md"""
 ---
 
-### Arrays
+#### Arrays
 
 Let's see if this works with one dimensional arrays or vectors:
 
@@ -470,7 +470,7 @@ See the [dot syntax](https://docs.julialang.org/en/v1/manual/functions/#man-vect
 md"""
 ---
 
-### Symbolics
+#### Symbolics
 
 Julia can also do symbolic manipulation. We will need the [Symbolics.jl](https://docs.sciml.ai/Symbolics/stable/) package for this and [Latexify.jl](https://korsbo.github.io/Latexify.jl/stable) for optional pretty printing in the notebook:
 
@@ -528,7 +528,7 @@ Rz(-z)Ry(θ)Rz(-ζ)
 md"""
 ---
 
-### GPU Programming
+#### GPU Programming
 
 Depending on the GPU that your laptop has, you will need to load one of the following packages:
 
@@ -602,13 +602,13 @@ For more on GPU programming in Julia, see the [JuliaGPU website](https://juliagp
 
 # ╔═╡ 8401d5df-ccb5-4c98-a952-6d71b7a74fa8
 md"""
-## Summary
+### Summary
 
 !!! note
 
     What have we learned about the Julia command line and features?
 
-    * Julia has four command line modes: **REPL**, **help**, **shell**, and **package manager**. 
+    * Julia has four command line modes: **REPL**, **help**, **shell**, and **package manager**.
 
     * Julia understands **unicode**.
 
@@ -621,7 +621,7 @@ md"""
 
 # ╔═╡ 11645d9e-637b-47c4-b2e6-8c4a7d9747cb
 md"""
-# Notebook setup
+### Notebook setup
 """
 
 # ╔═╡ b809bdb0-f042-4fd5-ace7-0cf51a587558
