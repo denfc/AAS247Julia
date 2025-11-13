@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.21
+# v0.20.20
 
 #> [frontmatter]
 #> title = "01: Intro"
@@ -66,6 +66,8 @@ Although an early advocate and developer of Numerical Python (now NumPy), Matplo
 # ╔═╡ b1ed2c4e-f5fa-4e5e-87d8-7af6f80a83ca
 md"""
 ### Getting Started
+
+---
 """
 
 # ╔═╡ 7f3357bc-4103-4a35-af21-9c86f5a0ec2f
@@ -90,12 +92,12 @@ julia>
 
 !!! tip
     The command line option "`-q`" can be used to remove the start-up banner.
+
+---
 """
 
 # ╔═╡ 7475c896-d1b1-4429-9ba8-8e78de41e0b0
 md"""
----
-
 #### Stopping Julia
 
 To exit Julia, enter `<Ctrl-D>` or `exit()`
@@ -106,13 +108,14 @@ julia> <Ctrl-D>
 
 !!! tip
     Don't do this now!
+
+---
 """
 
 # ╔═╡ 5df8264e-6e37-4674-abdf-2b05c530787f
 md"""
----
-
-#### The command line  or  REPL (Read-Eval-Print-Loop)"""
+#### The command line  or  REPL (Read-Eval-Print-Loop)
+"""
 
 # ╔═╡ f646ca14-c01e-47ee-8e2b-052d9db0985b
 md"""
@@ -162,6 +165,8 @@ md"""
 ### Other REPL Modes
 
 The Julia REPL supports several different modes, outlined below, accessible by a keystroke. Hit the `delete` or `backspace` key to return to the normal `julia>` REPL.
+
+---
 """
 
 # ╔═╡ 85f2bec3-0095-4bbc-93ef-48ab97094244
@@ -198,12 +203,12 @@ julia> String(take!(io))
 
 !!! note
 	Pluto has a **Live docs** tab in the lower right corner that will display the current Julia function or command. The **Help**, **Shell**, and **Package Manager** examples require the REPL, i.e., running Julia in a terminal.
+
+---
 """
 
 # ╔═╡ 8ee7f43d-bf75-4975-ac64-54c2d5a0174a
 md"""
----
-
 #### Shell: `;`
 
 For shell mode:
@@ -214,12 +219,12 @@ julia> ;
 shell> pwd
 /Users/myhomedir
 ```
+
+---
 """
 
 # ╔═╡ d1e9c51c-efb9-4dcb-9d28-8c54a235fbb4
 md"""
----
-
 #### Package Manager: `]`
 
 For package mode:
@@ -302,6 +307,8 @@ pkg> gc
 # ╔═╡ 563f07ad-6aed-495e-85fb-bae4a1755ac2
 md"""
 ### Some simple programming examples
+
+---
 """
 
 # ╔═╡ 0f94b21c-364f-488e-aff3-28c4b39a3844
@@ -361,12 +368,12 @@ md"""
 !!! note
 
     Notice that the error of the result `α` has been propogated correctly.
+
+---
 """
 
 # ╔═╡ 750acbf6-bc04-43ea-b123-14753cab597a
 md"""
----
-
 #### Units
 
 Let's add another package called [Unitful.jl](https://juliaphysics.github.io/Unitful.jl/stable/), which enables attaching units to variables:
@@ -430,23 +437,23 @@ The variable β's value now has an associated error and unit.
 
 # ╔═╡ d961b128-bd38-40dd-8942-da6b7c150c42
 md"""
-And 2π is the constant 2π.
+And 2π is the constant 2π:
 
 ```julia
 2π
 ```
-
-!!! note
-    As in the case of `2π`, the multiplication operator is inferred from the context and is not necessary. There cannot be a space between the number and variable.
 """
 
-# ╔═╡ 75ab8e8b-3082-45b0-9442-9c21bd1b09fa
+# ╔═╡ 56f7266f-507f-403c-9875-4aa8f9bb04aa
+md"""
+!!! note
+    As in the case of `2π`, the multiplication operator is inferred from the context and is not necessary. There cannot be a space between the number and variable.
 
+---
+"""
 
 # ╔═╡ cf4a0e8f-9210-4f1e-84d4-ee7ff09aaf61
 md"""
----
-
 #### Arrays
 
 Let's see if this works with one dimensional arrays or vectors:
@@ -464,12 +471,12 @@ Note the dot '`.`' before the multiplication character '`*`'.  This means elemen
 # ╔═╡ 1f90de4b-790b-41f8-9a7b-3a54e9fff472
 md"""
 See the [dot syntax](https://docs.julialang.org/en/v1/manual/functions/#man-vectorized) section of the Julia manual for more.
+
+---
 """
 
 # ╔═╡ 3e8ee79c-c315-4c19-88ad-9b58caa86c40
 md"""
----
-
 #### Symbolics
 
 Julia can also do symbolic manipulation. We will need the [Symbolics.jl](https://docs.sciml.ai/Symbolics/stable/) package for this and [Latexify.jl](https://korsbo.github.io/Latexify.jl/stable) for optional pretty printing in the notebook:
@@ -524,10 +531,13 @@ Rz(-z)Ry(θ)Rz(-ζ)
 # ╔═╡ 856a6279-6354-48de-85ca-c5638be68c9e
 
 
-# ╔═╡ f80f1bdd-5147-4a6c-8280-09329ed6dba1
+# ╔═╡ 5767f17a-a101-4e02-b4f6-b11ee777882b
 md"""
 ---
+"""
 
+# ╔═╡ f80f1bdd-5147-4a6c-8280-09329ed6dba1
+md"""
 #### GPU Programming
 
 Depending on the GPU that your laptop has, you will need to load one of the following packages:
@@ -671,7 +681,7 @@ TableOfContents(; title = notebook_name, depth = 4)
 # ╠═70f08712-002c-4adc-84b1-73a8655d8a44
 # ╟─6cc63679-6352-4ffa-ae6a-3066431cfd10
 # ╟─d961b128-bd38-40dd-8942-da6b7c150c42
-# ╠═75ab8e8b-3082-45b0-9442-9c21bd1b09fa
+# ╟─56f7266f-507f-403c-9875-4aa8f9bb04aa
 # ╟─cf4a0e8f-9210-4f1e-84d4-ee7ff09aaf61
 # ╠═fdba7211-e480-4948-8435-76a7608e7e63
 # ╟─1f90de4b-790b-41f8-9a7b-3a54e9fff472
@@ -683,6 +693,7 @@ TableOfContents(; title = notebook_name, depth = 4)
 # ╠═8f5f7d12-38eb-49c9-90c6-81d27eda13fe
 # ╟─1b9553dd-149c-4e48-aacf-10d6ca4756c2
 # ╠═856a6279-6354-48de-85ca-c5638be68c9e
+# ╟─5767f17a-a101-4e02-b4f6-b11ee777882b
 # ╟─f80f1bdd-5147-4a6c-8280-09329ed6dba1
 # ╠═d308df6b-14ec-49ec-8270-a3b9efd88517
 # ╟─cfc57dc3-bb97-4bf2-99e8-241e3f552f1e
