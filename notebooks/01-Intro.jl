@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.20
+# v0.20.21
 
 #> [frontmatter]
 #> title = "01: Intro"
@@ -60,7 +60,7 @@ md"""
 md"""
 #### Why Have I migrated to Julia?
 
-Although an early advocate and developer of Numerical Python (now NumPy), Matplotlib, and PyFits (now astropy.io.fits); I knew its limitations, namely, the two language problem. Therefore, once a better scientific programming language came along, I was prepared to migrate to that language. I believe that **Julia is that language.**
+Although an early advocate and developer of Numerical Python (now NumPy), Matplotlib, and PyFits (now astropy.io.fits), I knew its limitations, namely, the two language problem. Therefore, once a better scientific programming language came along, I was prepared to migrate to that language. I believe that **Julia is that language.**
 """
 
 # ╔═╡ b1ed2c4e-f5fa-4e5e-87d8-7af6f80a83ca
