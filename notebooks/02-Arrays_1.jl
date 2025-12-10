@@ -298,7 +298,7 @@ md"""
 # ╔═╡ 974bb44d-420c-460d-b626-707909568554
 md"""
 !!! danger "Review: Six Problems"
-	Solutions are hidden below each problem.
+	Remember that you can always get to help by typing `?` in the REPL and typing the command name for which you desire assistance.
 """
 
 # ╔═╡ e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
@@ -312,69 +312,17 @@ md"""
 	   - Hint: The `:` operator means "all". `M[row_index, col_index]`.
 """
 
-# ╔═╡ 7fee9cc1-ecd5-40d1-b9e5-7ca82ee3128e
-begin
-	# 1. Create the matrix
-	M = reshape(1:9, 3, 3)
-	# 3×3 Matrix{Int64}:
-	#  1  4  7
-	#  2  5  8
-	#  3  6  9
-
-	# 2. Print element at (1, 3)
-	# println(M[1, 3])
-	# Output: 7
-
-	# 3. Print the 2nd column
-	# println(M[:, 2])
-	# Output: [4, 5, 6]
-
-	# Note how M[1, 3] is 7, not 3, because the matrix filled by columns.
-
-	md"""
-	!!! tip "Solution 1 (with println commented out)"
-	"""
-end
-
 # ╔═╡ ff17e921-4522-4ab3-8282-9d9aafecdbe9
 md"""
 ### Problem 2: Broadcasting and Fusion
 !!! warning ""
-	1. Create a 1D vector x containing five evenly spaced points from 0 to $\pi$, inclusive.
+	1. Create a 1D vector `x` containing five evenly spaced points from 0 to $\pi$, inclusive.
 	   - Hint: `pi` is a built-in constant. The `range()` function might be useful: `range(start, stop, length)`. Or just type it manually.
 	1. Define a simple function `my_poly(x) = x^2 - 2*x + 1`.
 	1. Using broadcasting, apply your function `my_poly` to every element in `x`. Store the result in `y`.
 	1. Print both `x` and `y`.
 
 """
-
-# ╔═╡ 86c3b5ee-7024-4614-a28e-4516e35adfb4
-begin
-	# 1. Create the vector x
-	x = range(0, pi, length=5)
-	# Output: [0.0, 0.785398, 1.5708, 2.35619, 3.14159]
-
-	# 2. Define the function
-	my_poly(x) = x^2 - 2*x + 1
-
-	# 3. Apply the function using broadcasting
-	y = my_poly.(x)
-
-	# 4. Print
-	# println("X values: ", x)
-	# println("Y values: ", y)
-	# Output:
-	# X values: [0.0, 0.785398, 1.5708, 2.35619, 3.14159]
-	# Y values: [1.0, 0.04603, 0.32288, 1.8396, 4.5869]
-
-	# Note: You could also have written this using dot fusion directly
-	# without defining a function, and it would be just as fast!
-	# y = x.^2 .- 2 .* x .+ 1
-
-	md"""
-	!!! tip "Solution 2 (with println commented out)"
-	"""
-end
 
 # ╔═╡ 23069d06-9d74-4a39-912e-e6372ac03abb
 md"""
@@ -388,44 +336,6 @@ md"""
 """
 
 
-# ╔═╡ 3d50f1d3-066a-4ab0-8e6d-bb1041598057
-let # to avoid multiple instances of variables
-	# 1. Create A
-	A = reshape(1:8, 4, 2)
-	# 4×2 Matrix{Int64}:
-	#  1  5
-	#  2  6
-	#  3  7
-	#  4  8
-
-	# 2. Create v (1D Vector)
-	v = [10, 20, 30]
-	# 3-element Vector{Int64}:
-	#  10
-	#  20
-	#  30
-
-	# 3. Create c (2D Column Matrix)
-	c = [40; 50]
-	# 2×1 Matrix{Int64}:
-	#  40
-	#  50
-
-	# 4. Create B (a slice)
-	B = A[3:4, :] # Read as: rows 3 through 4, all columns
-	# 2×2 Matrix{Int64}:
-	#  3  7
-	#  4  8
-
-	# Alternative for #4 using 'end'
-	# B = A[end-1:end, :]
-
-
-	md"""
-	!!! tip "Solution 3"
-	"""
-end
-
 # ╔═╡ e022f21e-7f18-4690-99d4-0141403b3b38
 md"""
 ### Problem 4: Matrix Math vs. Element-wise Math
@@ -435,51 +345,9 @@ md"""
 	   - `Y = [2 0; 0 2] # This is a scaling matrix.`
 	2. Calculate the matrix multiplication `M = X * Y`.
 	3. Calculate the element-wise multiplication `E = X .* Y`.
-	4. Print both `M` and `E`. Look at `M[1, 1]` and `E[1, 1]`. Why are they different? (You just need to think about this, no need to write the answer).
+	4. Print both `M` and `E`. Look at `M[1, 1]` and `E[1, 1]`. Why are they different? (You just need to think about this; you don't need to write the answer).
 
 """
-
-# ╔═╡ 34cd25cc-f017-4c24-8125-bd899945be62
-let
-	# 1. Create matrices
-	X = [1 2; 3 4]
-	Y = [2 0; 0 2]
-
-	# 2. Matrix multiplication
-	M = X * Y
-	# 2×2 Matrix{Int64}:
-	#  2  4
-	#  6  8
-
-	# 3. Element-wise multiplication
-	E = X .* Y
-	# 2×2 Matrix{Int64}:
-	#  2  0
-	#  0  8
-
-	# 4. Print
-	# println("Matrix Product M: \n", M)
-	# println("Element-wise Product E: \n", E)
-
-	# Why are they different?
-	# M[1, 1] is (1*2 + 2*0) = 2
-	# E[1, 1] is (1*2) = 2
-	# (In this one case, they are the same! But look at M[2, 2] vs E[2, 2])
-	# M[2, 2] is (3*0 + 4*2) = 8
-	# E[2, 2] is (4*2) = 8
-	# (Still the same! This is a special diagonal matrix.)
-	# Let's look at M[2, 1] vs E[2, 1]
-	# M[2, 1] is (3*2 + 4*0) = 6
-	# E[2, 1] is (3*0) = 0
-	# Ah, there's the difference! `*` does the full linear algebra dot product,
-	# while `.*` just multiplies matching elements.
-
-	# (Self-correction: The example with Y = [2 0; 0 2] accidentally had the same result for [2,2]. The [2,1] element clearly shows the difference.)
-
-	md"""
-	!!! tip "Solution 4 (with println commented out)"
-	"""
-end
 
 # ╔═╡ 1416a80e-dbda-4185-8984-7f5de3c58f02
 md""" 
@@ -494,66 +362,15 @@ md"""
 	   - Hint: Remember to "dot" (`.`) every operation (`^`, `+`, `/`) to apply it element-wise.
 """
 
-# ╔═╡ 1ae90170-7388-4a6b-a134-508a94c0ba05
-let
-	# 1. Create vectors
-	a = [1.0, 2.0, 3.0, 4.0]
-	b = [0.1, 0.2, 0.3, 0.4]
-	c = [10.0, 10.0, 10.0, 10.0]
-
-	# 2. Calculate y using a fused expression
-	y = (a.^2 .+ b) ./ c
-
-	# 3. Print
-	# println(y)
-	# 4-element Vector{Float64}:
-	#  0.11
-	#  0.42
-	#  0.93
-	#  1.64
-
-	# This single line (a.^2 .+ b) ./ c is as fast as writing a manual for loop, because Julia fuses all the "dotted" operations.
-
-	md"""
-	!!! tip "Solution 5 (with println commented out)"
-	"""
-end
-
 # ╔═╡ cc640d51-f3d1-4d9e-bd6d-4fd7aa338f07
 md"""
 ### Problem 6: Column-Major Thinking (A Thought Experiment)
 !!! warning ""
 	1. Imagine you have a 10,000 × 10,000 matrix called `DATA`.
-	1. You need to write a for loop to calculate the sum of every element in the second column.
+	1. You need to write a for loop to calculate the sum of every element in the second column. (One might use the `size` command.)
 	1. Write this loop.
 	   - Hint: You only need one loop. Which index (row or column) should be fixed? Which one should your loop iterate over? Will this loop be fast or slow according to Julia's memory layout?
 """
-
-# ╔═╡ 9d3ace8b-55a4-45bf-8609-8eff2341aa82
-let
-
-	# This code is for demonstration; you only needed to write the loop.
-	DATA = rand(10000, 10000); # A large matrix
-
-	# The loop to sum the *second column*:
-	total = 0.0
-	for i in 1:size(DATA, 1) # Loop over all ROWS (i)
-		total += DATA[i, 2]   # ...but keep the COLUMN (j) fixed at 2
-	end
-
-	# println("The total is: ", total)
-
-	# Thought experiment answer:
-	# This loop iterates from DATA[1, 2], DATA[2, 2], DATA[3, 2], ...
-	# This is moving *down a column*.
-	# Because Julia is COLUMN-MAJOR, these elements are all
-	# right next to each other in memory.
-	# Therefore, this loop will be **very fast**.
-
-	md"""
-	!!! tip "Solution 6 (with println commented out)"
-	"""
-end
 
 # ╔═╡ Cell order:
 # ╟─f7cd76de-4427-4dc3-9d12-9931b27a2956
@@ -586,14 +403,8 @@ end
 # ╟─29e28885-d969-4e27-b5d3-866eb25302ab
 # ╟─974bb44d-420c-460d-b626-707909568554
 # ╟─e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
-# ╟─7fee9cc1-ecd5-40d1-b9e5-7ca82ee3128e
 # ╟─ff17e921-4522-4ab3-8282-9d9aafecdbe9
-# ╟─86c3b5ee-7024-4614-a28e-4516e35adfb4
 # ╟─23069d06-9d74-4a39-912e-e6372ac03abb
-# ╟─3d50f1d3-066a-4ab0-8e6d-bb1041598057
 # ╟─e022f21e-7f18-4690-99d4-0141403b3b38
-# ╟─34cd25cc-f017-4c24-8125-bd899945be62
 # ╟─1416a80e-dbda-4185-8984-7f5de3c58f02
-# ╟─1ae90170-7388-4a6b-a134-508a94c0ba05
 # ╟─cc640d51-f3d1-4d9e-bd6d-4fd7aa338f07
-# ╟─9d3ace8b-55a4-45bf-8609-8eff2341aa82
