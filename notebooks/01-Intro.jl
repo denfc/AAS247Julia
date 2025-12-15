@@ -17,17 +17,6 @@ using DrWatson
 # ╔═╡ 7c4ebc32-9b8e-4b2a-8f39-f4c351283843
 using Dates, PlutoUI
 
-# ╔═╡ 6001288a-7a9d-4020-bf7d-02a0fa250c04
-begin
-    notebook_name = "1-1: Introduction"
-    timestamp = string("Last updated: ", Dates.format(today(), dateformat"d u Y"))
-
-    """
-    !!! note "$(notebook_name)"
-        **$(timestamp)**
-    """ |> Markdown.parse
-end
-
 # ╔═╡ 38ead816-0375-4605-a833-6464485aa0d6
 md"""
 ### Historical Context
@@ -634,6 +623,18 @@ md"""
 ### Notebook setup
 """
 
+# ╔═╡ 68d34781-2f21-4356-996f-764ddf3acb4b
+notebook_name = "1-1: Introduction"
+
+# ╔═╡ 447f0993-ba7e-40f7-8955-5b5d77749770
+timestamp = string("Last updated: ", Dates.format(today(), dateformat"d u Y"))
+
+# ╔═╡ 6001288a-7a9d-4020-bf7d-02a0fa250c04
+"""
+!!! note "$(notebook_name)"
+    **$(timestamp)**
+""" |> Markdown.parse
+
 # ╔═╡ b809bdb0-f042-4fd5-ace7-0cf51a587558
 TableOfContents(; title = notebook_name, depth = 4)
 
@@ -704,6 +705,8 @@ TableOfContents(; title = notebook_name, depth = 4)
 # ╟─8401d5df-ccb5-4c98-a952-6d71b7a74fa8
 # ╟─11645d9e-637b-47c4-b2e6-8c4a7d9747cb
 # ╠═b34e164a-da63-4636-b2d3-1d9efc9ae8d6
-# ╠═7c4ebc32-9b8e-4b2a-8f39-f4c351283843
-# ╠═b809bdb0-f042-4fd5-ace7-0cf51a587558
 # ╠═040b953f-8873-441c-a97f-48c1cf45ef03
+# ╠═7c4ebc32-9b8e-4b2a-8f39-f4c351283843
+# ╟─68d34781-2f21-4356-996f-764ddf3acb4b
+# ╟─447f0993-ba7e-40f7-8955-5b5d77749770
+# ╠═b809bdb0-f042-4fd5-ace7-0cf51a587558
