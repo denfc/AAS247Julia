@@ -87,21 +87,21 @@ md"""
 Object-oriented languages tightly couple the class (or composite type) and the method (or function). This is achieved via single dispatch.
 
 * For Python, the method may look like the following, where `self` is the class (composite type):
-```julia
-mymethod(self, a, b)
-```
-The method is usually invoked using the dot notation:
-```
-self.mymethod(a, b)
-```
+  ```python
+  def mymethod(self, a, b):
+  ```
+  The method is usually invoked using the dot notation:
+  ```python
+  self.mymethod(a, b)
+  ```
 
 Julia loosely couples composite types (classes) and functions (methods) because of multiple dispatah. Therefore, Julia is not an object-oriented language.
 
 * For Julia, the function may look like the following, where `mytype` is the composite type (class):
 
-```
-mymethod(mtype, a, b)
-```
+  ```julia
+  mymethod(mytype, a, b)
+  ```
 """
 
 # ╔═╡ 74314d5e-64d6-46a1-88ee-cd5fc84972e3
@@ -111,28 +111,32 @@ md"""
 Functors are nameless functions. They are defined by their argument type, usually a composite type. A good example of this behaviour is the polynomial.
 
 * Construct the polynomial type:
-```julia
-struct Polynomial{R}
-	coef::Vector{R}
-end
-```
+
+  ```julia
+  struct Polynomial{R}
+      coef::Vector{R}
+  end
+  ```
 
 * Construct the function to evaluate the polynomial:
-```julia
-function (p::Polynomial)(x)
-	...
-end
-```
+
+  ```julia
+  function (p::Polynomial)(x)
+      ...
+  end
+  ```
 
 * Create the polynomial:
-```julia
-p = Polynomial([1, 2, 3])
-```
+
+  ```julia
+  p = Polynomial([1, 2, 3])
+  ```
 
 * Evaluate the polynomial
-```julia
-p(3)
-```
+
+  ```julia
+  p(3)
+  ```
 """
 
 # ╔═╡ 0c5d2b23-fb2b-4ce0-a7fc-e706eafd7751
