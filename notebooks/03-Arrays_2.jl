@@ -22,9 +22,6 @@ using DrWatson
 # ╔═╡ 3e21eeef-836b-468e-b058-9c26d8f75f01
 @quickactivate "AAS247Julia"
 
-# ╔═╡ 6f4eb353-2426-4a7c-b9e0-431727016bc2
-using DelimitedFiles
-
 # ╔═╡ 34562085-6ce2-44d6-84e6-056e9586117c
 using CSV
 
@@ -42,11 +39,45 @@ md"""
 ### Loading arrays from files
 """
 
+# ╔═╡ 75bc0795-bb17-48ed-92a8-98fed069ae4e
+md"""
+Scientific data is stored in a variety of formats, fixed-width, CSV, and FITS among them. Let's take a look at how to read a fixed-width file using Julia.
+
+First, we'll use DrWatson.jl's `datadir()` function to get the path to our data file.
+
+```julia
+datafilepath = datadir("mpcorb.dat")
+```
+"""
+
+# ╔═╡ 23fe0075-8eb4-4a0c-8711-7fa9a4bf3d20
+
+
+# ╔═╡ 2aa6465f-7e79-4060-9d6b-d8ab1a792c64
+md"""
+Now, we can use the built-in DelimitedFiles package and its `readdlm()` function to read in the data.
+```julia
+using DelimitedFiles
+DelimitedFiles.readdlm(datadir("mpcorb.dat"))
+```
+"""
+
+# ╔═╡ 6f4eb353-2426-4a7c-b9e0-431727016bc2
+
+
 # ╔═╡ 87c9962d-0a48-4772-ae15-7cd5bf9b21f4
-mat = DelimitedFiles.readdlm(datadir("mpcorb.dat"))
+
+
+# ╔═╡ 9e24d1be-7c2d-478c-b2b7-b112d15915e7
+md"""
+We can see that the first row is just headers, so we can select everything from the second row onwards and put it in a variable
+```julia
+mat = DelimitedFiles.readdlm(datadir("mpcorb.dat"))[2:end]
+```
+"""
 
 # ╔═╡ 2f06b1c3-3ba6-4abf-aa72-9a8a8baf1556
-mat[2:end,:]
+
 
 # ╔═╡ 79669758-04c2-4617-bdcf-f3d031c9b226
 md"""
@@ -60,7 +91,10 @@ url = "https://www.sidc.be/SILSO/DATA/EISN/EISN_current.csv"
 local_filename = Downloads.download(url)
 
 # ╔═╡ ac4cca94-a416-44bf-8c62-35384adf98f6
-CSV.read(local_filename, Tuple, header=false)
+csv_tuple = CSV.read(local_filename, Tuple, header=false)
+
+# ╔═╡ 717ec41c-f524-4556-b316-32aa804f0c88
+reduce(hcat, csv_tuple[1:end-1])
 
 # ╔═╡ 2788d2f9-a6b9-4169-85c9-014e5dd565bc
 md"""
@@ -220,8 +254,12 @@ Widening cell
 # ╟─d046592d-9786-4675-b8bd-26848fcb6a50
 # ╟─6dab8c14-64c1-4518-aea4-c3502787851e
 # ╟─1282f0b4-41a9-46d1-adb2-68638c76da87
+# ╟─75bc0795-bb17-48ed-92a8-98fed069ae4e
+# ╠═23fe0075-8eb4-4a0c-8711-7fa9a4bf3d20
+# ╟─2aa6465f-7e79-4060-9d6b-d8ab1a792c64
 # ╠═6f4eb353-2426-4a7c-b9e0-431727016bc2
 # ╠═87c9962d-0a48-4772-ae15-7cd5bf9b21f4
+# ╟─9e24d1be-7c2d-478c-b2b7-b112d15915e7
 # ╠═2f06b1c3-3ba6-4abf-aa72-9a8a8baf1556
 # ╟─79669758-04c2-4617-bdcf-f3d031c9b226
 # ╠═34562085-6ce2-44d6-84e6-056e9586117c
@@ -229,6 +267,7 @@ Widening cell
 # ╠═99893407-4326-43e5-9d90-fb969a6d815e
 # ╠═2854a8cd-4b8a-4fdb-9f92-0a6ddfcf45fa
 # ╠═ac4cca94-a416-44bf-8c62-35384adf98f6
+# ╠═717ec41c-f524-4556-b316-32aa804f0c88
 # ╟─2788d2f9-a6b9-4169-85c9-014e5dd565bc
 # ╟─a42c9932-65e5-4d7b-946e-4e1f81a364db
 # ╟─e6af4614-6b62-44ba-a5ef-daccd6f8c9a8
