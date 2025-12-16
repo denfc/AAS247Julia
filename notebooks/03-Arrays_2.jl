@@ -153,7 +153,17 @@ md"""
 
 # ╔═╡ cee1d2fd-cea3-4fbf-bdd6-1d0286f84f69
 md"""
-### Cartesian indexing
+### Problem 1: Cartesian indexing
+"""
+
+# ╔═╡ 59e1b957-ec35-48ba-8349-216750ead10f
+md"""
+### Problem 2: Identity matrix
+"""
+
+# ╔═╡ 90b215d2-733e-4a7c-a9f6-f2d3c6ef3cd5
+md"""
+### Problem 3: Using LinearAlgebra.jl
 """
 
 # ╔═╡ 9f6c71ca-6de0-453d-9ad3-4996e2a2001b
@@ -241,6 +251,8 @@ Widening cell
 # ╠═fdd2befd-4317-4710-b7a2-da5c9260cc40
 # ╟─c5e7ec5b-fc9b-46fb-8708-4cf9d80387e3
 # ╟─cee1d2fd-cea3-4fbf-bdd6-1d0286f84f69
+# ╟─59e1b957-ec35-48ba-8349-216750ead10f
+# ╟─90b215d2-733e-4a7c-a9f6-f2d3c6ef3cd5
 # ╟─9f6c71ca-6de0-453d-9ad3-4996e2a2001b
 # ╠═606d3a60-b987-11f0-b09c-ab2e3fa2835d
 # ╠═3e21eeef-836b-468e-b058-9c26d8f75f01
