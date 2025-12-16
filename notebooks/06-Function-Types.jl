@@ -138,12 +138,6 @@ md"""
     * Functors are nameless functions that use the composite type for dispatch.
 """
 
-# ╔═╡ b2df24b4-8557-444c-8946-00b2ddf9fab6
-md"""
-!!! danger "Problems"
-    Solution are hidden below each problem.
-"""
-
 # ╔═╡ 2d156a39-9fa7-4c16-9fcb-beccfd318c03
 md"""
 ### Problem 1: A function with one abstract type
@@ -159,9 +153,7 @@ md"""
 """
 
 # ╔═╡ 660de134-abd4-4fd5-af7f-0f78f1e23727
-md"""
-!!! tip "Solution 1 (with println commented out)"
-"""
+
 
 # ╔═╡ c43d1c95-e003-4580-9057-ac59970f17c2
 md"""
@@ -173,9 +165,7 @@ md"""
 """
 
 # ╔═╡ d9c9c0c8-6484-4c95-9949-656a5de83762
-md"""
-!!! tip "Solution 2 (with println commented out)"
-"""
+
 
 # ╔═╡ 5588e7ba-1f51-441b-bdc2-fe63023e42e6
 md"""
@@ -188,9 +178,7 @@ md"""
 """
 
 # ╔═╡ 94952bbc-8e78-4daa-9186-b4d87ffb1697
-md"""
-!!! tip "Solution 3 (with println commented out)"
-"""
+
 
 # ╔═╡ 092154d4-5072-4855-bba6-69500c2dcf31
 md"""
@@ -208,9 +196,7 @@ md"""
 """
 
 # ╔═╡ f9a1fece-bec7-4dbb-ad0a-4ff1d29c2f08
-md"""
-!!! tip "Solution 4 (with println commented out)"
-"""
+
 
 # ╔═╡ 36360e9c-a3fa-463d-b3ed-fef4f4851007
 md"""
@@ -224,8 +210,11 @@ md"""
 """
 
 # ╔═╡ 8c258f48-bd25-4998-9699-b4f415d76b8a
+
+
+# ╔═╡ 5c195e5e-3929-4448-9b6e-f3b989f2e297
 md"""
-!!! tip "Solution 5 (with println commented out)"
+----
 """
 
 # ╔═╡ e7ae5a6e-1bf4-442b-9c03-75343c07f999
@@ -255,17 +244,17 @@ timestamp = Dates.format(today(), dateformat"d u Y")
 # ╟─bcc0cb23-ea14-477c-8e3c-2c04d7fd00d8
 # ╟─74314d5e-64d6-46a1-88ee-cd5fc84972e3
 # ╟─0c5d2b23-fb2b-4ce0-a7fc-e706eafd7751
-# ╟─b2df24b4-8557-444c-8946-00b2ddf9fab6
 # ╟─2d156a39-9fa7-4c16-9fcb-beccfd318c03
-# ╟─660de134-abd4-4fd5-af7f-0f78f1e23727
+# ╠═660de134-abd4-4fd5-af7f-0f78f1e23727
 # ╟─c43d1c95-e003-4580-9057-ac59970f17c2
-# ╟─d9c9c0c8-6484-4c95-9949-656a5de83762
+# ╠═d9c9c0c8-6484-4c95-9949-656a5de83762
 # ╟─5588e7ba-1f51-441b-bdc2-fe63023e42e6
-# ╟─94952bbc-8e78-4daa-9186-b4d87ffb1697
+# ╠═94952bbc-8e78-4daa-9186-b4d87ffb1697
 # ╟─092154d4-5072-4855-bba6-69500c2dcf31
-# ╟─f9a1fece-bec7-4dbb-ad0a-4ff1d29c2f08
+# ╠═f9a1fece-bec7-4dbb-ad0a-4ff1d29c2f08
 # ╟─36360e9c-a3fa-463d-b3ed-fef4f4851007
-# ╟─8c258f48-bd25-4998-9699-b4f415d76b8a
+# ╠═8c258f48-bd25-4998-9699-b4f415d76b8a
+# ╟─5c195e5e-3929-4448-9b6e-f3b989f2e297
 # ╟─e7ae5a6e-1bf4-442b-9c03-75343c07f999
 # ╠═b4228b44-cd1f-4664-a102-65c0b22a757c
 # ╠═d07e2d0b-9d94-4cd4-ac26-5494d555bd1b
