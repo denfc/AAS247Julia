@@ -49,49 +49,68 @@ md"""
 ## Problems
 """
 
+# ╔═╡ 0090a6e4-75d8-400f-82ce-bdd541d5f320
+md"""
+### Problem 1: Subtypes
+"""
+
 # ╔═╡ 6d5283e1-cbc8-49c2-a8ff-79e0df888483
 md"""
-Show the subtype graph for the Integer abstract type, e.g., `subtypes(Integer)`.
+!!! warning ""
+    - Show the subtype graph for the Integer abstract type, e.g., `subtypes(Integer)`.
+    - Show the subtype graph for the `AbstractFloat` abstract type.
+    - Show the subtype graph for the `Real` abstract type.
 """
 
 # ╔═╡ 9d6a9d57-3d37-40ae-83e1-5630fac51cfb
-md"""
-Show the subtype graph for the `AbstractFloat` abstract type.
-"""
 
-# ╔═╡ eb9f19b4-518f-43bd-9491-fd8bd7727222
+
+# ╔═╡ 56f44662-79fd-459c-b258-240dd2f33727
 md"""
-Show the subtype graph for the `Real` abstract type.
+### Problem 2: Supertypes
 """
 
 # ╔═╡ 5866c023-3dec-4d4c-926d-cc046de788b5
 md"""
-Show the supertype for `Real`.
-"""
-
-# ╔═╡ 4c14ad18-f8ac-4822-b666-87d06f9b6a57
-md"""
-Show the supertype for `Number`.
+!!! warning ""
+    - Show the supertype for `Real`.
+    - Show the supertype for `Number`.
+    - Show *all* the supertypes of `Float32`.
+    - Show the supertype for `Any`.
 """
 
 # ╔═╡ b4cbf4b0-c118-46f0-9429-94d94f9620d1
-md"""
-Show the supertype for `Any`.
-"""
+
 
 # ╔═╡ 90f106a9-ae69-446c-982f-1c1637ca157f
 md"""
-Where is `Any` in the type graph?
+!!! warning ""
+    Where is `Any` in the type graph?
+"""
+
+# ╔═╡ 83634592-4da6-41ca-ae82-f28f68a5c5bb
+md"""
+### Problem 3: Composite types
 """
 
 # ╔═╡ 2283876d-1b7b-44c5-ab80-cab5853d8b94
 md"""
-Create a 1D array or vector and show its type, i.e., `typeof(vector)`. Note: What kind of type is it?
+!!! warning ""
+    Create a 1D array or vector and show its type, i.e., `typeof(vector)`. Note: What kind of type is it?
 """
+
+# ╔═╡ eca426ef-e2f3-449f-867f-3951b3373174
+
 
 # ╔═╡ 623072a7-79af-48f0-a9e0-31345d589e94
 md"""
-Create a composite type, e.g., `struct AType a::Integer b::String end`, and instantiate it, i.e., `AType(2, "abc")`.
+!!! warning ""
+    Create a composite type, e.g., `struct AType a::Integer b::String end`, and instantiate it, i.e., `AType(2, "abc")`.
+"""
+
+# ╔═╡ bce6847a-0d49-455d-b606-0c52c65e3d6d
+md"""
+----
 """
 
 # ╔═╡ e3d0f321-ded7-4355-abdb-d58fbc008cd1
@@ -163,15 +182,18 @@ end
 # ╟─33a3c28c-7b98-4fa9-8603-d9f8848a523b
 # ╠═fd423ae4-fd20-46dd-9a92-369d69242dde
 # ╟─444a233a-6815-43ce-a9f9-340ccbc7cb65
+# ╟─0090a6e4-75d8-400f-82ce-bdd541d5f320
 # ╟─6d5283e1-cbc8-49c2-a8ff-79e0df888483
-# ╟─9d6a9d57-3d37-40ae-83e1-5630fac51cfb
-# ╟─eb9f19b4-518f-43bd-9491-fd8bd7727222
+# ╠═9d6a9d57-3d37-40ae-83e1-5630fac51cfb
+# ╟─56f44662-79fd-459c-b258-240dd2f33727
 # ╟─5866c023-3dec-4d4c-926d-cc046de788b5
-# ╟─4c14ad18-f8ac-4822-b666-87d06f9b6a57
-# ╟─b4cbf4b0-c118-46f0-9429-94d94f9620d1
+# ╠═b4cbf4b0-c118-46f0-9429-94d94f9620d1
 # ╟─90f106a9-ae69-446c-982f-1c1637ca157f
+# ╟─83634592-4da6-41ca-ae82-f28f68a5c5bb
 # ╟─2283876d-1b7b-44c5-ab80-cab5853d8b94
+# ╠═eca426ef-e2f3-449f-867f-3951b3373174
 # ╟─623072a7-79af-48f0-a9e0-31345d589e94
+# ╟─bce6847a-0d49-455d-b606-0c52c65e3d6d
 # ╟─e3d0f321-ded7-4355-abdb-d58fbc008cd1
 # ╠═189ec852-bf0b-11f0-a069-2def1b4d4791
 # ╠═169ccf8b-5f34-4e1c-9596-a50c6153b9f1
