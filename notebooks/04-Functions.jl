@@ -191,22 +191,79 @@ md"""
 
 """
 
-# ╔═╡ f2c8a8af-6638-4fc3-88e7-88190bcea9b2
+# ╔═╡ 334abd5f-8a2c-4e05-96cc-feb9dd8f30ae
 md"""
-### Problems
-!!! warning "7+ problems (~5 minutes each)"
 
-* Define and use a multi-line function without keywords.
-* Define and use a multi-line function with default values and without keywords.
-* Define and use a multi-line function with default values and keywords.
-* Define and use a single-line function without keywords.
-* Define and use a single-line function with keywords.
-* Define and use an anonymous function.
-* Use an anonymous function with the `filter()` and `map()`.
-* Define an `add()` with no argument types and use it with different argument types.
-* Use `methods()` to show the `add()` methods.
-* Define an `add()` with specified argument types and use it.
-  * Note: Julia will use the specific version function before defaulting to the general version function.
+### Problem 1: Function Syntax (Multi-line & Defaults)
+
+!!! warning ""
+	1. **Basic Multi-line:** Define a function `calculate_vol(l, w, h)` using the `function ... end` block. It should return the product of the three arguments.
+	- Test: `calculate_vol(2, 3, 4)` should be 24.
+	2. **Adding Defaults:** Redefine the function so `h` has a default value of `1`.
+	- Code: `function calculate_vol(l, w, h=1) ... end`
+	3. **Testing Defaults:** Call `calculate_vol(5, 5)`.
+	- Note: You only provided 2 arguments, so Julia automatically supplies `1` for `h`.
+"""
+
+# ╔═╡ 0659caa1-1dfd-418a-80c8-3167ca30ade9
+md"""
+
+### Problem 2: Keywords & Single-liners
+
+!!! warning ""
+	1. **Keywords (`:` vs `;`):** Define a function `describe_data(data; label="Unknown")`.
+	- Note the semicolon `;`! This separates positional arguments (`data`) from keyword arguments (`label`).
+	- Make the function return a string: `"$label: $data"`.
+	2. **Usage:**
+	- Call it without the keyword: `describe_data([10, 20])`.
+	- Call it *with* the keyword: `describe_data([10, 20], label="Temperature")`.
+	3. **The One-Liner:** Redefine this function using the concise assignment syntax:
+	- `describe_data(data; label="Unknown") = "$label: $data"`
+"""
+
+# ╔═╡ 50f84dd5-7585-482d-bd8e-96b6cabfdbc2
+md"""
+
+### Problem 3: Anonymous Functions (Map & Filter)
+
+!!! warning ""
+	1. **The Syntax:** An anonymous function (lambda) looks like `x -> x + 1`.
+	2. **Map:** Use `map()` with an anonymous function to double every number in the list `[1, 2, 3, 4]`.
+	- Structure: `map(func, collection)`.
+	- Solution: `map(x -> x * 2, [1, 2, 3, 4])`.
+	3. **Filter:** Use `filter()` with an anonymous function to extract numbers greater than 5 from the list `[3, 4, 5, 6, 7]`.
+	- Solution: `filter(x -> x > 5, [3, 4, 5, 6, 7])`.
+"""
+
+# ╔═╡ a1ec03ac-f7b4-4499-92e2-c2a047ed3574
+md"""
+
+### Problem 4: The Generic `add()`
+
+!!! warning ""
+	1. **Generic Definition:** Define a function `my_add(a, b) = a + b`. Do not add any `::Type` annotations.
+	2. **Duck Typing:**
+	- Try `my_add(10, 20)` (Ints).
+	- Try `my_add(3.14, 2.0)` (Floats).
+	- Try `my_add("Hello ", "World")` (Strings).
+	- *Observation:* It works for all of them because the underlying `+` is defined for all these types.
+	3. **Introspection:** Run `methods(my_add)`.
+	- You should see `# 1 method for generic function "my_add"`.
+"""
+
+# ╔═╡ 0eec43c3-6ca7-4d11-b21c-7d661ef0a3e7
+md"""
+
+### Problem 5: Specialization & Dispatch
+
+!!! warning ""
+	1. **Specific Definition:** Now, add a new method to the *same* function name `my_add`, but constrain the types to Strings only.
+	- `my_add(a::String, b::String) = "$a ... $b"`
+	2. **Check Methods:** Run `methods(my_add)` again. You should now see **2 methods**.
+	3. **Dispatch in Action:**
+	- Run `my_add(5, 5)`. (Julia chooses the generic version).
+	- Run `my_add("A", "B")`. (Julia chooses the specific String version).
+	4. **The Rule:** Julia always executes the **most specific** method that matches the arguments provided.
 """
 
 # ╔═╡ 7c70658b-9913-42ee-913b-0c483d95aee9
@@ -287,7 +344,11 @@ end
 # ╟─775644ed-bbd9-4017-a036-14d9b576873a
 # ╟─d8ba51b9-2d28-4d97-8704-c56c44e04a62
 # ╟─09abe51d-ed7d-4f8a-b49c-193dbf188e02
-# ╟─f2c8a8af-6638-4fc3-88e7-88190bcea9b2
+# ╟─334abd5f-8a2c-4e05-96cc-feb9dd8f30ae
+# ╟─0659caa1-1dfd-418a-80c8-3167ca30ade9
+# ╟─50f84dd5-7585-482d-bd8e-96b6cabfdbc2
+# ╟─a1ec03ac-f7b4-4499-92e2-c2a047ed3574
+# ╟─0eec43c3-6ca7-4d11-b21c-7d661ef0a3e7
 # ╟─7c70658b-9913-42ee-913b-0c483d95aee9
 # ╠═c4480e57-d479-403b-a841-50e0b6ee0b04
 # ╠═5bd8b585-ee1c-4ec7-bfb5-6e266824b3b4
