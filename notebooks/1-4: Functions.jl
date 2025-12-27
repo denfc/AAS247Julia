@@ -4,47 +4,36 @@
 using Markdown
 using InteractiveUtils
 
-# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
-macro bind(def, element)
-    #! format: off
-    return quote
-        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
-        local el = $(esc(element))
-        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
-        el
-    end
-    #! format: on
+# ╔═╡ 83ab9733-5969-4d0c-a3c0-b8f4d2402fde
+begin
+	using Dates, PlutoUI, HypertextLiteral
+	TableOfContents(title = "1-4: Functions", depth = 4)
 end
 
-# ╔═╡ 602c43c5-28de-487b-af91-bc6523b7d899
-using Dates, PlutoUI, HypertextLiteral, Revise
-
-# ╔═╡ 65b843a0-24ad-4821-9097-088be8d4539f
-md" ##### Begin New Coding Here"
-
-# ╔═╡ 7d8410d2-7568-4dee-b812-9fa9f8acb33f
-md"""
-# 0. The Power of Functions in Julia
-Introduction to the contruction of Julia functions and their implementation by Julia.
-
-If you come from Python or Java, functions are attached to classes. In Julia, functions are standalone citizens, and they define the behavior of the language. We will cover the syntax, the argument system, and introduce a key Julia feature: Multiple Dispatch.
-
-!!! note ""
-    1. Defining functions
-    1. Function arguments and keywords
-    1. Multiple dispatch
+# ╔═╡ afe988c7-c708-4fdb-bf82-54edeb9db708
 """
+!!! note "1-4: Functions"
+    **Last Updated: $(Dates.format(today(), dateformat"d u Y"))**
+""" |> Markdown.parse
 
 # ╔═╡ c78da21b-40ad-42d1-8516-b91d16982c77
 md"""
-# 1: Defining Functions
+# Functions in Julia
 
-Julia offers three syntactic ways to define a function. They all compile down to the same thing, so choose because of context or preferred style.
+Introduction to the contruction of Julia functions and their implementation by Julia.
+
+If you come from Python or Java, functions are attached to classes. In Julia, functions are standalone citizens, and they define the behavior of the language. We will cover the syntax, the argument system, and introduce a key Julia feature: Multiple Dispatch.
 """
 
 # ╔═╡ c74cace1-0e96-48e7-82d3-12f3af3d8591
 md"""
-1.1 The standard multiline looks similar to Python or MATLAB: we use the `function` keyword and close with `end`.
+# Defining Functions
+
+Julia offers three syntactic ways to define a function. They all compile down to the same thing, so choose because of context or preferred style.
+
+## Default Syntax
+
+The standard multiline looks similar to Python or MATLAB: we use the `function` keyword and close with `end`.
 
 ```julia
 function hypotenuse(a, b)
@@ -58,11 +47,10 @@ end
 
     A. The indentation helps for readability, of course, but Julia does not use indentation to define code blocks.\
     B. Julia automatically returns the result of the last expression evaluated, but for definitiveness and clarity we have used it in the example above.
-"""
 
-# ╔═╡ cd420030-32d1-4eef-9630-2d526566081c
-md"""
-1.2 The single-line assignment form may be unique to Julia and is perfect for short operations. While functionally identical to the multiline version, it reduces visual clutter for simple logic.
+## Single-Line Syntax
+
+The single-line assignment form may be unique to Julia and is perfect for short operations. While functionally identical to the multiline version, it reduces visual clutter for simple logic.
 
 ```julia
 hypotenuse(a, b) = sqrt(a^2 + b^2)
@@ -70,11 +58,8 @@ hypotenuse(a, b) = sqrt(a^2 + b^2)
 
 !!! note
     The compiler will automatically inline functions to improve performance, i.e., unlike in C or Python, there is no function call performance hit.
-"""
 
-# ╔═╡ d87b2eed-922f-4c9b-8fcd-6a015d9d35d3
-md"""
-1.3 Anonymous Functions (Lambdas)
+## Anonymous Functions (Lambdas)
 
 Used often in functional programming contexts such as `map`, `filter` or `findall`, an anonymous function uses the arrow syntax:  -> .
 
@@ -87,14 +72,11 @@ map(x -> x^2, [1, 2, 3])
 ```
 """
 
-# ╔═╡ e1b0b588-eaee-47cd-9406-b3dfe38b2f19
-md"""
-# 2: Arguments and Keywords (over which Julia gives you much control).
-"""
-
 # ╔═╡ 70b70576-0c49-4e5b-b7c1-dd400f3fbcca
 md"""
-2.1 Positional vs. Keyword Arguments
+# Arguments and Keywords
+
+## Positional vs. Keyword Arguments
 
 A crucial syntax distinction: in a Julia function, a semicolon (;) strictly separates positional arguments from keyword arguments.
 
@@ -108,11 +90,8 @@ end
 # Usage
 transform(10, 20; scale=2.0)
 ```
-"""
 
-# ╔═╡ f0714c6a-19e8-408e-ba1e-565ae9ef87fb
-md"""
-2.2 Default Values and Methods
+## Default Values and Methods
 
 You can provide default values for positional arguments. Interestingly, behind the scenes, Julia actually generates multiple methods.
 
@@ -128,27 +107,21 @@ myfunc(x, y)
 ```
 """
 
-# ╔═╡ 022ce88c-cf02-11f0-ba74-39ac8b31fd57
-md"""
-# 3: Multiple Dispatch
-
-!!! note "The most important part and a core reason for Julia's existence."
-"""
-
 # ╔═╡ 12928360-90aa-4409-860a-af7f5c781e98
 md"""
-3.1 Single Dispatch (The Python/OO Way)
+# Multiple Dispatch
+
+!!! note "The most important part and a core reason for Julia's existence."
+
+## Single Dispatch (The Python/OO Way)
 
 In Object-Oriented languages such as Python or Java, functions or methods are tightly bound to classes. In non-OO languages, methods are loosely bound to classes.  When you call `obj.method(arg)` --- equivalent in Julia to `method(obj, arg)` --- the language decides which code to run based on the type of the first argument (`obj`) only, which creates the "Expression Problem."
 
 Think about addition. If you write `a + b` in Python, it effectively calls `a.__add__(b)`.
 If `a` doesn't know how to add `b`, Python tries `b.__radd__(a)` (reverse add).
 You have to write specific logic inside the class of `a` to handle every possible `b`.
-"""
 
-# ╔═╡ 775644ed-bbd9-4017-a036-14d9b576873a
-md"""
-3.2 Multiple Dispatch (The Julia Way)
+## Multiple Dispatch (The Julia Way)
 
 Julia is not Object-Oriented; it is Function-Oriented. When you call `f(arg1, arg2)`, Julia looks at the types of all arguments involved to decide which implementation to run. We call the abstract definition a Function and the specific implementation for specific types a Method. Let's look at a (perhaps silly) example of addition.
 
@@ -178,10 +151,10 @@ md"""
 
 # ╔═╡ 09abe51d-ed7d-4f8a-b49c-193dbf188e02
 md"""
-!!! note "Recap"
-    1. Definitions: You can use multiline blocks, one-liners, or lambdas.
-    2. Arguments: Use :: for types and ; to separate keyword arguments.
-    3. Multiple Dispatch: The compiler chooses the most specific method based on the types of all arguments, allowing for incredibly composable and high-performance code.
+!!! note "Summary"
+    * Definitions: You can use multiline blocks, one-liners, or lambdas.
+    * Arguments: Use :: for types and ; to separate keyword arguments.
+    * Multiple Dispatch: The compiler chooses the most specific method based on the types of all arguments, allowing for incredibly composable and high-performance code.
 
 """
 
@@ -263,85 +236,16 @@ md"""
 	4. **The Rule:** Julia always executes the **most specific** method that matches the arguments provided.
 """
 
-# ╔═╡ 7c70658b-9913-42ee-913b-0c483d95aee9
-md"""
-# Notebook setup
-"""
-
-# ╔═╡ c4480e57-d479-403b-a841-50e0b6ee0b04
-# using DrWatson
-
-# ╔═╡ 5bd8b585-ee1c-4ec7-bfb5-6e266824b3b4
-# # @quickactivate "." # When running a script in the REPL, this command activates the project environment so that all pre-loaded packages are available.  Despire the help file's saying, "Pluto.jl understands the @quickactivate macro and will switch to using the standard Julia package manager once it encounters it (or quickactivate)," it seems to be preventing the automatic downloading of packages that Pluto effects.  Perhaps it has not caught up to the most recent Julia update(s) and so for now (19 Dec), at least, both it and DrWatson (cell above) have been commented out.
-
-# ╔═╡ 601e5ecb-4829-432c-9315-6450cb22b05a
-notebookName = "1-4: Functions"
-
-# ╔═╡ ae271c82-969e-45e3-87b7-872e1cbf097b
-timestamp = Dates.format(today(), dateformat"d u Y")
-
-# ╔═╡ afe988c7-c708-4fdb-bf82-54edeb9db708
-"""
-!!! note "$notebookName"
-    **Last Updated: $(timestamp)**
-""" |> Markdown.parse
-
-# ╔═╡ 83ab9733-5969-4d0c-a3c0-b8f4d2402fde
-TableOfContents(title = notebookName, depth = 4)
-
-# ╔═╡ 8e538add-e168-434f-b98c-721586a66167
-md"""
-Widening sliders
-"""
-
-# ╔═╡ 86b28341-38ec-4dfc-bad2-4a5c89d46cb9
-cellWidthSlider = @bind cellWidth Slider(500:25:1500, show_value=true, default=800);
-
-# ╔═╡ 25f04e9b-f087-49fb-b325-bd73c4260d58
-leftMarginSlider = @bind leftMargin Slider(-250:25:100, show_value=true, default=0);
-
-# ╔═╡ 55f82e50-9a84-4c09-a15b-18fa9275726c
-md"""
-###### Cell width sliders
-- cell width: $cellWidthSlider
-- left-margin: $leftMarginSlider
-"""
-
-# ╔═╡ 3aa7166e-3e82-41c3-8618-859c1d8fbe5a
-begin
-    @bind screenWidth @htl("""
-    <div>
-        <script>
-            var div = currentScript.parentElement
-            div.value = screen.width
-        </script>
-    </div>
-    """)
-    # cellWidth = min(1000, screenWidth * 0.50)
-    @htl("""
-    <style>
-    pluto-notebook {
-        margin-left: $(leftMargin)px;
-        # margin: auto;
-        width: $(cellWidth)px;
-    }
-    </style>
-    Widening cell.
-    """)
-end
-
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
 HypertextLiteral = "~0.9.5"
 PlutoUI = "~0.7.76"
-Revise = "~3.12.3"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -350,7 +254,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.12.3"
 manifest_format = "2.0"
-project_hash = "dc752d4ce103266d28456068d6fde0a1741adaa5"
+project_hash = "130913124ee09826a81b0c1a5e4b6a1abdfbdfa9"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -370,12 +274,6 @@ version = "1.11.0"
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 version = "1.11.0"
 
-[[deps.CodeTracking]]
-deps = ["InteractiveUtils", "UUIDs"]
-git-tree-sha1 = "b7231a755812695b8046e8471ddc34c8268cbad5"
-uuid = "da1fd8a2-8d9e-5ec2-8556-3022fb5608a2"
-version = "3.0.0"
-
 [[deps.ColorTypes]]
 deps = ["FixedPointNumbers", "Random"]
 git-tree-sha1 = "67e11ee83a43eb71ddc950302c53bf33f0690dfe"
@@ -385,11 +283,6 @@ weakdeps = ["StyledStrings"]
 
     [deps.ColorTypes.extensions]
     StyledStringsExt = "StyledStrings"
-
-[[deps.Compiler]]
-git-tree-sha1 = "382d79bfe72a406294faca39ef0c3cef6e6ce1f1"
-uuid = "807dbc54-b67e-4c79-8afb-eafe4df6f2e1"
-version = "0.1.1"
 
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -439,12 +332,6 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 version = "1.11.0"
 
-[[deps.JuliaInterpreter]]
-deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "80580012d4ed5a3e8b18c7cd86cebe4b816d17a6"
-uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.10.9"
-
 [[deps.JuliaSyntaxHighlighting]]
 deps = ["StyledStrings"]
 uuid = "ac6e5ff7-fb65-4e79-a425-ec3bc9c03011"
@@ -488,12 +375,6 @@ version = "1.12.0"
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 version = "1.11.0"
 
-[[deps.LoweredCodeUtils]]
-deps = ["CodeTracking", "Compiler", "JuliaInterpreter"]
-git-tree-sha1 = "65ae3db6ab0e5b1b5f217043c558d9d1d33cc88d"
-uuid = "6f1432cf-f94c-5a45-995e-cdbf5db27b0b"
-version = "3.5.0"
-
 [[deps.MIMEs]]
 git-tree-sha1 = "c64d943587f7187e751162b3b84445bbbd79f691"
 uuid = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
@@ -522,19 +403,16 @@ deps = ["Artifacts", "Libdl"]
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
 version = "3.5.4+0"
 
-[[deps.OrderedCollections]]
-git-tree-sha1 = "05868e21324cede2207c6f0f466b4bfef6d5e7ee"
-uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
-version = "1.8.1"
-
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "Random", "SHA", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 version = "1.12.1"
-weakdeps = ["REPL"]
 
     [deps.Pkg.extensions]
     REPLExt = "REPL"
+
+    [deps.Pkg.weakdeps]
+    REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 
 [[deps.PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "Downloads", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
@@ -547,11 +425,6 @@ deps = ["Unicode"]
 uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 version = "1.11.0"
 
-[[deps.REPL]]
-deps = ["InteractiveUtils", "JuliaSyntaxHighlighting", "Markdown", "Sockets", "StyledStrings", "Unicode"]
-uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
-version = "1.11.0"
-
 [[deps.Random]]
 deps = ["SHA"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
@@ -562,34 +435,12 @@ git-tree-sha1 = "45e428421666073eab6f2da5c9d310d99bb12f9b"
 uuid = "189a3867-3050-52da-a836-e630ba90ab69"
 version = "1.2.2"
 
-[[deps.Requires]]
-deps = ["UUIDs"]
-git-tree-sha1 = "62389eeff14780bfe55195b7204c0d8738436d64"
-uuid = "ae029012-a4dd-5104-9daa-d747884805df"
-version = "1.3.1"
-
-[[deps.Revise]]
-deps = ["CodeTracking", "FileWatching", "JuliaInterpreter", "LibGit2", "LoweredCodeUtils", "OrderedCollections", "REPL", "Requires", "UUIDs", "Unicode"]
-git-tree-sha1 = "ff0bd131abc4ebd9b66d2033144bed6d011d5074"
-uuid = "295af30f-e4ad-537b-8983-00126c2a3abe"
-version = "3.12.3"
-
-    [deps.Revise.extensions]
-    DistributedExt = "Distributed"
-
-    [deps.Revise.weakdeps]
-    Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
-
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 version = "0.7.0"
 
 [[deps.Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
-version = "1.11.0"
-
-[[deps.Sockets]]
-uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
 version = "1.11.0"
 
 [[deps.Statistics]]
@@ -665,19 +516,10 @@ version = "17.7.0+0"
 
 # ╔═╡ Cell order:
 # ╟─afe988c7-c708-4fdb-bf82-54edeb9db708
-# ╟─55f82e50-9a84-4c09-a15b-18fa9275726c
-# ╟─65b843a0-24ad-4821-9097-088be8d4539f
-# ╟─7d8410d2-7568-4dee-b812-9fa9f8acb33f
 # ╟─c78da21b-40ad-42d1-8516-b91d16982c77
 # ╟─c74cace1-0e96-48e7-82d3-12f3af3d8591
-# ╟─cd420030-32d1-4eef-9630-2d526566081c
-# ╟─d87b2eed-922f-4c9b-8fcd-6a015d9d35d3
-# ╟─e1b0b588-eaee-47cd-9406-b3dfe38b2f19
 # ╟─70b70576-0c49-4e5b-b7c1-dd400f3fbcca
-# ╟─f0714c6a-19e8-408e-ba1e-565ae9ef87fb
-# ╟─022ce88c-cf02-11f0-ba74-39ac8b31fd57
 # ╟─12928360-90aa-4409-860a-af7f5c781e98
-# ╟─775644ed-bbd9-4017-a036-14d9b576873a
 # ╟─d8ba51b9-2d28-4d97-8704-c56c44e04a62
 # ╟─09abe51d-ed7d-4f8a-b49c-193dbf188e02
 # ╟─8e6406dd-e58c-4aef-8bc9-a57984f90884
@@ -686,16 +528,6 @@ version = "17.7.0+0"
 # ╟─50f84dd5-7585-482d-bd8e-96b6cabfdbc2
 # ╟─a1ec03ac-f7b4-4499-92e2-c2a047ed3574
 # ╟─0eec43c3-6ca7-4d11-b21c-7d661ef0a3e7
-# ╟─7c70658b-9913-42ee-913b-0c483d95aee9
-# ╠═c4480e57-d479-403b-a841-50e0b6ee0b04
-# ╠═5bd8b585-ee1c-4ec7-bfb5-6e266824b3b4
-# ╠═602c43c5-28de-487b-af91-bc6523b7d899
-# ╟─601e5ecb-4829-432c-9315-6450cb22b05a
-# ╟─ae271c82-969e-45e3-87b7-872e1cbf097b
-# ╠═83ab9733-5969-4d0c-a3c0-b8f4d2402fde
-# ╟─3aa7166e-3e82-41c3-8618-859c1d8fbe5a
-# ╟─8e538add-e168-434f-b98c-721586a66167
-# ╠═86b28341-38ec-4dfc-bad2-4a5c89d46cb9
-# ╠═25f04e9b-f087-49fb-b325-bd73c4260d58
+# ╟─83ab9733-5969-4d0c-a3c0-b8f4d2402fde
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

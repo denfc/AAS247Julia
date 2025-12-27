@@ -4,54 +4,21 @@
 using Markdown
 using InteractiveUtils
 
-# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
-macro bind(def, element)
-    #! format: off
-    return quote
-        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
-        local el = $(esc(element))
-        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
-        el
-    end
-    #! format: on
+# ╔═╡ 624bd571-c51e-4f52-848b-7cdefebbd42a
+begin
+	using Dates, PlutoUI, HypertextLiteral
+	TableOfContents(title = "1-2: Arrays 1", depth = 4)
 end
 
-# ╔═╡ e186986e-ae37-47ad-b44c-2d7d1078b3cd
-using PlutoUI, HypertextLiteral, Revise
-
-# ╔═╡ 624bd571-c51e-4f52-848b-7cdefebbd42a
-using Dates
-
-# ╔═╡ e133c0fe-39b7-400e-9e20-f7506603e17d
-md" ##### Begin New Coding Here"
-
-# ╔═╡ b28ecc8b-c27f-4446-961d-a187f28cf97a
-md"""
-# 0. Array Topics
-!!! note ""
-	Julia is built for high-performance scientific computing, and at the heart of that is its array implementation. Understanding how Julia thinks about arrays will make your code simpler, more readable, and fast.
-
-	We'll cover six key topics:
-
-	1. Multidimensional Arrays.
-
-	1. Julia's "Mathematics Protocol": 1-Indexing and Column-Major Order.
-
-	1. Array Creation with "," and ";".
-
-	1. Broadcasting with the . (dot) operator.
-
-	1. Array Fusion and its performance (especially vs. Python).
-
-	1. Matrix Multiplication with the * operator.
-
-!!! warning ""
-	If you want to go straight to the problems based on these topics, go [here.](#Problem-1:-Creation-and-Indexing-(Column-Major))
+# ╔═╡ e984391b-0c01-4dc8-85aa-3593027e8530
 """
+!!! note "1-2: Arrays 1"
+    **Last Updated: $(Dates.format(today(), dateformat"d u Y"))**
+""" |> Markdown.parse
 
 # ╔═╡ 2675d602-810c-4320-971c-902c3327a5cb
 md"""
-# 1. Multidimensional Arrays
+# Multidimensional Arrays
 In Julia, an array is a collection of objects stored in a multi-dimensional grid.
 
 1. A 1D array is a Vector, i.e., as a single list or column of numbers.
@@ -65,7 +32,7 @@ We interact with these using square brackets `[]` for indexing, e.g., `A[2]` get
 
 # ╔═╡ 346cb64d-3c89-44d1-9edb-06354152243a
 md"""
-# 2. The Julia "Mathematics Protocol"
+# The Julia "Mathematics Protocol"
 
 Julia's arrays behave differently from arrays in languages like Python, C, or Java. Julia's design follows the conventions of mathematics and linear algebra, which has two major consequences.
 
@@ -90,10 +57,7 @@ Julia's arrays behave differently from arrays in languages like Python, C, or Ja
 Why does this matter? Accessing memory that is close together is typically much faster (due to CPU caching) than accessing memory that is spread out.
 
 In Julia, this means that looping down a column, i.e., through the rows, is fast.
-"""
 
-# ╔═╡ 977537f7-3358-4598-afb8-3d421c12f565
-md"""
 ``` julia
 # Accessing memory sequentially is better, e.g.,
 for j in 1:numCols
@@ -106,21 +70,25 @@ end
 
 # ╔═╡ 11832b60-4906-4d22-960b-0b16b6634011
 md"""
-# 3. Array Creation
-1. You can create arrays with functions like `zeros(2, 3)` or `rand(3, 3)`. But for literal arrays, we use `[]` with two simple rules:
+# Array Creation
+
+## Functions
+
+You can create arrays with functions like `zeros(2, 3)` or `rand(3, 3)`. But for literal arrays, we use `[]` with two simple rules:
 
    1. Commas (`,`) separate elements in a 1D Vector.
    2. Spaces separate elements in a row (i.e., new columns).
 
-2. Semicolons (`;`) separate rows.
+## Semicolon Syntax
+
+Semicolons (`;`) separate rows.
 
 The four following examples show array creation.
 !!! note ""
 	`[1, 2, 3]`, with commas, gives a 1D Vector, while `[1; 2; 3]`, with semicolons, gives a 2D, 3×1 Matrix. The 1D Vector is "dimensionless" and often acts like a column vector in math operations, which is very convenient.
-"""
 
-# ╔═╡ b6f5c9c6-669e-4a67-b429-cf8e85d00c08
-md"1: A 1D Vector (using commas) produces a 3-element Vector{Int64}, `v = [1, 2, 3]`, yields"
+1: A 1D Vector (using commas) produces a 3-element Vector{Int64}, `v = [1, 2, 3]`, yields"
+"""
 
 # ╔═╡ 5a1ad46c-d500-4762-920f-812ebff350e4
 begin
@@ -165,7 +133,8 @@ end
 
 # ╔═╡ d5268417-62f9-4fa8-beac-c4d4b9007223
 md"""
-# 4. Array Broadcasting (The Dot: "`.`")
+# Array Broadcasting ( `.` Operator)
+
 This is arguably the most important feature for clean, fast array code.
 
 What if you have a vector `A = [1, 2, 3]` and you want to add 1 to every element? Or what if you want to multiply every element in an array by its corresponding element in another array?
@@ -181,8 +150,9 @@ You can "dot" any function, including your own: `my_function.(my_array)`.
 # ╔═╡ 8a5d4ccf-a3b2-4373-822d-dbf5254bf4b0
 md"""
 
-# 5. Array Fusion (Performance vs. Python)
-This is where the magic happens. What happens if you chain multiple "dotted" operations?
+# Array Fusion
+
+This is where the magic happens and the power of Juila. What happens if you chain multiple "dotted" operations?
 
 ```julia
 A = rand(1000)
@@ -215,7 +185,8 @@ end
 
 # ╔═╡ 65151aba-d946-401d-8cca-1874f38146f2
 md"""
-# 6. Matrix Multiplication (`*`)
+# Matrix Multiplication ( `*` Operator)
+
 We just learned that `A .* B` is the element-wise product.
 
 So, how do we do standard, linear algebra matrix multiplication?
@@ -223,14 +194,46 @@ So, how do we do standard, linear algebra matrix multiplication?
 We use the asterisk (`*`) operator without the dot.
 """
 
-# ╔═╡ d46a4d5c-4324-48c8-9851-d486495ec5dc
-begin
-	A = [1 2; 3 4]
-	B = [5 6; 7 8]
+# ╔═╡ 116911ed-cc32-41ea-a495-a3117815d669
+md"""
+```
+A = [1 2; 3 4]
+```
+"""
 
-	# Element-wise product
-	C = A .* B
-end
+
+# ╔═╡ 97449f19-bc7f-4f61-91b0-375a35c900ee
+A = [1 2; 3 4]
+
+# ╔═╡ fdedd9a7-40de-43d2-a1cf-df7090469177
+md"""
+```
+B = [5 6; 7 8]
+```
+"""
+
+# ╔═╡ ab454f32-dc6a-4251-95f0-4b62cc779e14
+B = [5 6; 7 8]
+
+# ╔═╡ 1330515c-7cac-478a-9406-5134205bc2e5
+md"""
+Element-wise product
+
+```
+C = A .* B
+```
+"""
+
+# ╔═╡ 2f6a898d-3312-4e81-89b5-6b4d3fab253c
+C = A .* B
+
+# ╔═╡ c5f425d6-3be2-4dc7-8b5f-c4487ba32d51
+md"""
+Matrix Multiplication
+```
+D = A * B
+```
+"""
 
 # ╔═╡ 9ff79fb3-7415-44db-9427-853296f9fb6e
 # Matrix multiplication
@@ -246,15 +249,10 @@ md"""
 	c) (But also use `*` to join strings.)
 """
 
-# ╔═╡ f4c82ed6-bfb7-4600-b9c6-b29627de74f4
+# ╔═╡ e26b69c9-d37d-449d-90d4-cdce4dff2362
 md"""
 # Problems
-"""
-
-# ╔═╡ 974bb44d-420c-460d-b626-707909568554
-md"""
-!!! danger "Review: Six Problems"
-	Remember that you can always get to help by typing `?` in the REPL and typing the command name for which you desire assistance.
+!!! tip "Remember that you can get help either through `?` in a REPL or with "Live Docs" right here in Pluto (lower right-hand corner)"
 """
 
 # ╔═╡ e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
@@ -328,85 +326,16 @@ md"""
 	   - Hint: You only need one loop. Which index (row or column) should be fixed? Which one should your loop iterate over? Will this loop be fast or slow according to Julia's memory layout?
 """
 
-# ╔═╡ 75a587fc-cd2d-4205-bd2e-8fc770a63dcf
-md"""
-# Notebook setup
-"""
-
-# ╔═╡ dbb04803-2fc3-4455-99e6-ac78360a200f
-# using DrWatson
-
-# ╔═╡ 533bf41f-0dc3-42e3-af5c-344163e950b1
-# @quickactivate "AAS247Julia" # When running a script in the REPL, this command activates the project environment so that all pre-loaded packages are available.  Despire the help file's saying, "Pluto.jl understands the @quickactivate macro and will switch to using the standard Julia package manager once it encounters it (or quickactivate)," it seems to be preventing the automatic downloading of packages that Pluto effects.  Perhaps it has not caught up to the most recent Julia update(s) and so for now (19 Dec), at least, both it and DrWatson (cell above) have been commented out.
-
-# ╔═╡ 84ecbeb2-f601-4945-8ed0-6dcf103d97da
-notebookName = "1-2: Arrays_1"
-
-# ╔═╡ f124d454-a47e-446a-95f4-6793e9fd5b13
-timestamp = Dates.format(today(), dateformat"d u Y")
-
-# ╔═╡ e984391b-0c01-4dc8-85aa-3593027e8530
-"""
-!!! note "$notebookName"
-    **Last Updated: $(timestamp)**
-""" |> Markdown.parse
-
-# ╔═╡ 0fe8eafe-871b-40a2-ad45-3a27e0566533
-TableOfContents(title = notebookName, depth = 4)
-
-# ╔═╡ 3c71a06d-924a-4403-98df-4bf167ee8520
-md"""
-Widening sliders
-"""
-
-# ╔═╡ cd7d2daf-d625-4c76-a27d-3153721b339a
-cellWidthSlider = @bind cellWidth Slider(500:25:1500, show_value=true, default=800);
-
-# ╔═╡ 0c30be39-0c5b-44cf-9a64-518080da07a7
-leftMarginSlider = @bind leftMargin Slider(-250:25:100, show_value=true, default=0);
-
-# ╔═╡ b3c88a20-d092-40e8-9e01-95f093048318
-md"""
-###### Cell width sliders
-- cell width: $cellWidthSlider
-- left margin: $leftMarginSlider
-"""
-
-# ╔═╡ 650767d3-3e8e-4351-a249-8e11c1037385
-begin
-    @bind screenWidth @htl("""
-    <div>
-        <script>
-            var div = currentScript.parentElement
-            div.value = screen.width
-        </script>
-    </div>
-    """)
-    # cellWidth = min(1000, screenWidth * 0.50)
-    @htl("""
-    <style>
-    pluto-notebook {
-        margin-left: $(leftMargin)px;
-        # margin: auto;
-        width: $(cellWidth)px;
-    }
-    </style>
-    Widening cell.
-    """)
-end
-
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
 HypertextLiteral = "~0.9.5"
 PlutoUI = "~0.7.76"
-Revise = "~3.12.3"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -415,7 +344,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.12.3"
 manifest_format = "2.0"
-project_hash = "dc752d4ce103266d28456068d6fde0a1741adaa5"
+project_hash = "130913124ee09826a81b0c1a5e4b6a1abdfbdfa9"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -435,12 +364,6 @@ version = "1.11.0"
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 version = "1.11.0"
 
-[[deps.CodeTracking]]
-deps = ["InteractiveUtils", "UUIDs"]
-git-tree-sha1 = "b7231a755812695b8046e8471ddc34c8268cbad5"
-uuid = "da1fd8a2-8d9e-5ec2-8556-3022fb5608a2"
-version = "3.0.0"
-
 [[deps.ColorTypes]]
 deps = ["FixedPointNumbers", "Random"]
 git-tree-sha1 = "67e11ee83a43eb71ddc950302c53bf33f0690dfe"
@@ -450,11 +373,6 @@ weakdeps = ["StyledStrings"]
 
     [deps.ColorTypes.extensions]
     StyledStringsExt = "StyledStrings"
-
-[[deps.Compiler]]
-git-tree-sha1 = "382d79bfe72a406294faca39ef0c3cef6e6ce1f1"
-uuid = "807dbc54-b67e-4c79-8afb-eafe4df6f2e1"
-version = "0.1.1"
 
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -504,12 +422,6 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 version = "1.11.0"
 
-[[deps.JuliaInterpreter]]
-deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "80580012d4ed5a3e8b18c7cd86cebe4b816d17a6"
-uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.10.9"
-
 [[deps.JuliaSyntaxHighlighting]]
 deps = ["StyledStrings"]
 uuid = "ac6e5ff7-fb65-4e79-a425-ec3bc9c03011"
@@ -553,12 +465,6 @@ version = "1.12.0"
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 version = "1.11.0"
 
-[[deps.LoweredCodeUtils]]
-deps = ["CodeTracking", "Compiler", "JuliaInterpreter"]
-git-tree-sha1 = "65ae3db6ab0e5b1b5f217043c558d9d1d33cc88d"
-uuid = "6f1432cf-f94c-5a45-995e-cdbf5db27b0b"
-version = "3.5.0"
-
 [[deps.MIMEs]]
 git-tree-sha1 = "c64d943587f7187e751162b3b84445bbbd79f691"
 uuid = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
@@ -587,34 +493,26 @@ deps = ["Artifacts", "Libdl"]
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
 version = "3.5.4+0"
 
-[[deps.OrderedCollections]]
-git-tree-sha1 = "05868e21324cede2207c6f0f466b4bfef6d5e7ee"
-uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
-version = "1.8.1"
-
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "Random", "SHA", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 version = "1.12.1"
-weakdeps = ["REPL"]
 
     [deps.Pkg.extensions]
     REPLExt = "REPL"
 
+    [deps.Pkg.weakdeps]
+    REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
+
 [[deps.PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "Downloads", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
-git-tree-sha1 = "0d751d4ceb9dbd402646886332c2f99169dc1cfd"
+git-tree-sha1 = "6ed167db158c7c1031abf3bd67f8e689c8bdf2b7"
 uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-version = "0.7.76"
+version = "0.7.77"
 
 [[deps.Printf]]
 deps = ["Unicode"]
 uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
-version = "1.11.0"
-
-[[deps.REPL]]
-deps = ["InteractiveUtils", "JuliaSyntaxHighlighting", "Markdown", "Sockets", "StyledStrings", "Unicode"]
-uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 version = "1.11.0"
 
 [[deps.Random]]
@@ -627,34 +525,12 @@ git-tree-sha1 = "45e428421666073eab6f2da5c9d310d99bb12f9b"
 uuid = "189a3867-3050-52da-a836-e630ba90ab69"
 version = "1.2.2"
 
-[[deps.Requires]]
-deps = ["UUIDs"]
-git-tree-sha1 = "62389eeff14780bfe55195b7204c0d8738436d64"
-uuid = "ae029012-a4dd-5104-9daa-d747884805df"
-version = "1.3.1"
-
-[[deps.Revise]]
-deps = ["CodeTracking", "FileWatching", "JuliaInterpreter", "LibGit2", "LoweredCodeUtils", "OrderedCollections", "REPL", "Requires", "UUIDs", "Unicode"]
-git-tree-sha1 = "ff0bd131abc4ebd9b66d2033144bed6d011d5074"
-uuid = "295af30f-e4ad-537b-8983-00126c2a3abe"
-version = "3.12.3"
-
-    [deps.Revise.extensions]
-    DistributedExt = "Distributed"
-
-    [deps.Revise.weakdeps]
-    Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
-
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 version = "0.7.0"
 
 [[deps.Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
-version = "1.11.0"
-
-[[deps.Sockets]]
-uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
 version = "1.11.0"
 
 [[deps.Statistics]]
@@ -730,14 +606,9 @@ version = "17.7.0+0"
 
 # ╔═╡ Cell order:
 # ╟─e984391b-0c01-4dc8-85aa-3593027e8530
-# ╟─b3c88a20-d092-40e8-9e01-95f093048318
-# ╟─e133c0fe-39b7-400e-9e20-f7506603e17d
-# ╟─b28ecc8b-c27f-4446-961d-a187f28cf97a
 # ╟─2675d602-810c-4320-971c-902c3327a5cb
 # ╟─346cb64d-3c89-44d1-9edb-06354152243a
-# ╟─977537f7-3358-4598-afb8-3d421c12f565
 # ╟─11832b60-4906-4d22-960b-0b16b6634011
-# ╟─b6f5c9c6-669e-4a67-b429-cf8e85d00c08
 # ╟─5a1ad46c-d500-4762-920f-812ebff350e4
 # ╟─f542c713-f23d-4d9d-a271-e54d77c600d3
 # ╟─40481932-af01-4981-8911-e6e35121ff9e
@@ -748,28 +619,22 @@ version = "17.7.0+0"
 # ╟─d5268417-62f9-4fa8-beac-c4d4b9007223
 # ╟─8a5d4ccf-a3b2-4373-822d-dbf5254bf4b0
 # ╟─65151aba-d946-401d-8cca-1874f38146f2
-# ╠═d46a4d5c-4324-48c8-9851-d486495ec5dc
-# ╠═9ff79fb3-7415-44db-9427-853296f9fb6e
+# ╟─116911ed-cc32-41ea-a495-a3117815d669
+# ╟─97449f19-bc7f-4f61-91b0-375a35c900ee
+# ╟─fdedd9a7-40de-43d2-a1cf-df7090469177
+# ╟─ab454f32-dc6a-4251-95f0-4b62cc779e14
+# ╟─1330515c-7cac-478a-9406-5134205bc2e5
+# ╟─2f6a898d-3312-4e81-89b5-6b4d3fab253c
+# ╟─c5f425d6-3be2-4dc7-8b5f-c4487ba32d51
+# ╟─9ff79fb3-7415-44db-9427-853296f9fb6e
 # ╟─29e28885-d969-4e27-b5d3-866eb25302ab
-# ╟─f4c82ed6-bfb7-4600-b9c6-b29627de74f4
-# ╟─974bb44d-420c-460d-b626-707909568554
+# ╟─e26b69c9-d37d-449d-90d4-cdce4dff2362
 # ╟─e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
 # ╟─ff17e921-4522-4ab3-8282-9d9aafecdbe9
 # ╟─23069d06-9d74-4a39-912e-e6372ac03abb
 # ╟─e022f21e-7f18-4690-99d4-0141403b3b38
 # ╟─1416a80e-dbda-4185-8984-7f5de3c58f02
 # ╟─cc640d51-f3d1-4d9e-bd6d-4fd7aa338f07
-# ╟─75a587fc-cd2d-4205-bd2e-8fc770a63dcf
-# ╠═dbb04803-2fc3-4455-99e6-ac78360a200f
-# ╠═533bf41f-0dc3-42e3-af5c-344163e950b1
-# ╠═624bd571-c51e-4f52-848b-7cdefebbd42a
-# ╠═e186986e-ae37-47ad-b44c-2d7d1078b3cd
-# ╟─84ecbeb2-f601-4945-8ed0-6dcf103d97da
-# ╟─f124d454-a47e-446a-95f4-6793e9fd5b13
-# ╠═0fe8eafe-871b-40a2-ad45-3a27e0566533
-# ╟─650767d3-3e8e-4351-a249-8e11c1037385
-# ╟─3c71a06d-924a-4403-98df-4bf167ee8520
-# ╠═cd7d2daf-d625-4c76-a27d-3153721b339a
-# ╠═0c30be39-0c5b-44cf-9a64-518080da07a7
+# ╟─624bd571-c51e-4f52-848b-7cdefebbd42a
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
