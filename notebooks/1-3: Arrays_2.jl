@@ -209,33 +209,74 @@ md"""
 !!! tip "Remember that you can get help either through `?` in a REPL or with "Live Docs" right here in Pluto (lower right-hand corner)"
 """
 
-# ╔═╡ 59e1b957-ec35-48ba-8349-216750ead10f
+# ╔═╡ bc42e1cf-8d18-4a4f-a392-81b876c7a525
 md"""
-## 1. A Simple Identity matrix
+## 1: Slicing
+
 !!! warning ""
-	* Create a 10x10 identity matrix I1 using nested `for` loops.
-	  * Hint: use `reshape()` to convert a 1D array to a 2D array.
-	* Create a 10x10 identity matrix I2 using multiple `for` loops.
-      * Hint: use the tertiary operator: ` <comparison> ? <true value> : <false value>`
-	* Display the size of the identity matrix I2.
-	  * Hint: use `sizeof(I2)`
+	* Construct a 5×5 matrix of sequential values starting at 1.
+	  - Hint: use `reshape()`.
+	* Extract the value at column 1 and row 1.
+	* Extract the value at column 5 and row 5.
+	* Extract the first column.
+	  - Hint: the `:` operator by itself defaults to beginning and end indices.
+	* Extract the first row.
+	* Extract the lower 3×3 subarray.
+	  - Hint: use the `end` index.
+	* Extract the odd indices from the first row.
+	* Extract the odd indices from the first column and row.
+"""
+
+# ╔═╡ 79808bf9-eec0-44b2-be4d-f6eadb8b2b1c
+md"""
+## 2: Array Comprehensions
+
+!!! warning ""
+	* Construct a vector of ten even values using an array comprehension.
+	* Construct a 5×5 matrix of odd values using an array comprehension.
+	* Construct a vector of `String`s of length 10.
+	* Construct a vector of `Int16`s of length 10.
+	* Construct a vector of `Tuple`s from the two vectors, where the first Tuple contains the value of the element at index 1 from each vector.
+	  - Hint: use `zip()`
+"""
+
+# ╔═╡ 6389805e-f9a1-49ad-a95f-d7878bcfc1ca
+md"""
+## 3: Bit Mask
+
+!!! warning ""
+	* Construct a random vector of length 20.
+	* Extract the values between 0.4 and 0.6.
+	  - Hint: use a comparision expression.
 """
 
 # ╔═╡ 90b215d2-733e-4a7c-a9f6-f2d3c6ef3cd5
 md"""
-## 2. A LinearAlgebra.jl Identity Matrix
+## 4. Identity Matrix
 
 !!! warning ""
+	* Construct a 10×10 identity matrix I1 using nested `for`-loops, i.e., without using a comma.
+      - Hint: use the tertiary operator: ` <comparison> ? <true value> : <false 
+	  - Hint: use `reshape()` to convert a 1D array to a 2D array.
+	* Get the size of I1 in bytes.
+	  - Hint: use `sizeof()`.
+	* Construct a 10×10 identity matrix I2 using multiple `for`-loops, i.e., with using a comma.
+	* Get the size of I2 in bytes.
 	* Add the LinearAlgebra package.
-	* Create a 10x10 identity matrix I3 using the LinearAlgebra package.
-	* Display the size of the identity matrix I3
+	* Construct a 10x10 identity matrix I2 using the LinearAlgebra package.
+	* Get the size of I2 in bytes.
+	* Why might the identity matrices be different in size?	
 """
 
 # ╔═╡ cee1d2fd-cea3-4fbf-bdd6-1d0286f84f69
 md"""
-## 3. Cartesian indexing
+## 5. Cartesian indexing
 !!! warning ""
-	* 
+	* Construct a 2×2×2×2 matrix with values from 1 to 16.
+	* Use a `CartensianIndex` to extract the value at 1, 1, 1, 1.
+	* Use a `CartensianIndex` to extract the value at 1, 1, 1, 2.
+	* Use a `CartensianIndex` to extract the value at 1:2, 2, 2, 2.
+	  - Hint: slicing and `CartesianIndex`s can be used together.
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -525,7 +566,9 @@ version = "17.7.0+0"
 # ╟─d1e8e027-ce75-4cee-bbbd-f977e7c4d442
 # ╟─b59e0ee5-2496-4b7c-a6b0-a06f1ebada24
 # ╟─68240605-d3c1-4ba0-b938-a1785d466456
-# ╟─59e1b957-ec35-48ba-8349-216750ead10f
+# ╟─bc42e1cf-8d18-4a4f-a392-81b876c7a525
+# ╟─79808bf9-eec0-44b2-be4d-f6eadb8b2b1c
+# ╟─6389805e-f9a1-49ad-a95f-d7878bcfc1ca
 # ╟─90b215d2-733e-4a7c-a9f6-f2d3c6ef3cd5
 # ╟─cee1d2fd-cea3-4fbf-bdd6-1d0286f84f69
 # ╟─157fdc89-ff6f-4e6c-99b0-fc952daa24ef

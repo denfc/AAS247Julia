@@ -173,12 +173,12 @@ md"""
 ## 1: Function Syntax (Multi-line & Defaults)
 
 !!! warning ""
-	1. **Basic Multi-line:** Define a function `calculate_vol(l, w, h)` using the `function ... end` block. It should return the product of the three arguments.
-	- Test: `calculate_vol(2, 3, 4)` should be 24.
-	2. **Adding Defaults:** Redefine the function so `h` has a default value of `4`.
-	- Code: `function calculate_vol(l, w, h=1) ... end`
-	3. **Testing Defaults:** Call `calculate_vol(5, 5)`.
-	- Note: You only provided 2 arguments, so Julia automatically supplies `4` for `h`, yielding 100 for the result; what will `calculate_vol(5, 5, 5)` produce?
+	* **Basic Multi-line:** Define a function `calculate_vol(l, w, h)` using the `function ... end` block. It should return the product of the three arguments.
+	  - Test: `calculate_vol(2, 3, 4)` should be 24.
+	* **Adding Defaults:** Redefine the function so `h` has a default value of `4`.
+	  - Code: `function calculate_vol(l, w, h=1) ... end`
+	*  **Testing Defaults:** Call `calculate_vol(5, 5)`.
+	  - Note: You only provided 2 arguments, so Julia automatically supplies `4` for `h`, yielding 100 for the result; what will `calculate_vol(5, 5, 5)` produce?
 """
 
 # ╔═╡ 0659caa1-1dfd-418a-80c8-3167ca30ade9
@@ -187,13 +187,13 @@ md"""
 ## 2: Keywords & Single-liners
 
 !!! warning ""
-	1. **Keywords (`:` vs `;`):** Define a function `describe_data(data; label="Unknown")`.
-	- Note the semicolon `;`! This separates positional arguments (`data`) from keyword arguments (`label`).
-	- Make the function return a string: `"$label: $data"`.
-	2. **Usage:**
-	- Call it without the keyword: `describe_data([10, 20])`.
-	- Call it *with* the keyword: `describe_data([10, 20], label="Temperature")`.
-	3. **The One-Liner:** Redefine this function in one line (without needing `function`.)
+	* **Keywords (`:` vs `;`):** Define a function `describe_data(data; label="Unknown")`.
+	  - Note the semicolon `;`! This separates positional arguments (`data`) from keyword arguments (`label`).
+	  - Make the function return a string: `"$label: $data"`.
+	* **Usage:**
+	  - Call it without the keyword: `describe_data([10, 20])`.
+	  - Call it *with* the keyword: `describe_data([10, 20], label="Temperature")`.
+	* **The One-Liner:** Redefine this function in one line (without needing `function`.)
 """
 
 # ╔═╡ 50f84dd5-7585-482d-bd8e-96b6cabfdbc2
@@ -202,10 +202,10 @@ md"""
 ## 3: Anonymous Functions (Map & Filter)
 
 !!! warning ""
-	1. **The Syntax:** An anonymous function (lambda) looks like `x -> x + 1`.
-	2. **Map:** Use `map()` with an anonymous function to double every number in the list `[1, 2, 3, 4]`.
-	- Structure: `map(func, collection)`.
-	3. **Filter:** Use `filter()` with an anonymous function to extract numbers greater than 5 from the list `[3, 4, 5, 6, 7]`.
+	* **The Syntax:** An anonymous function (lambda) looks like `x -> x + 1`.
+	* **Map:** Use `map()` with an anonymous function to double every number in the list `[1, 2, 3, 4]`.
+	  - Structure: `map(func, collection)`.
+	* **Filter:** Use `filter()` with an anonymous function to extract numbers greater than 5 from the list `[3, 4, 5, 6, 7]`.
 """
 
 # ╔═╡ a1ec03ac-f7b4-4499-92e2-c2a047ed3574
@@ -214,14 +214,14 @@ md"""
 ## 4: The Generic `add()`
 
 !!! warning ""
-	1. **Generic Definition:** Define a function `my_add(a, b) = a + b`. Do not add any `::Type` annotations.
-	2. **Duck Typing:**
-	- Try `my_add(10, 20)` (Integers).
-	- Try `my_add(3.14, 2.0)` (Floats).
-	- Try `my_add("Hello ", "World")` (Strings).
-	- *Observation:* It works for all of them because the underlying `+` is defined for all these types.
-	3. **Introspection:** Run `methods(my_add)`.
-	- You should see `# 1 method for generic function "my_add"`.
+	* **Generic Definition:** Define a function `my_add(a, b) = a + b`. Do not add any `::Type` annotations.
+	* **Duck Typing:**
+	  - Try `my_add(10, 20)` (Integers).
+	  - Try `my_add(3.14, 2.0)` (Floats).
+	  - Try `my_add("Hello ", "World")` (Strings).
+	  - *Observation:* It works for all of them because the underlying `+` is defined for all these types.
+	* **Introspection:** Run `methods(my_add)`.
+	  - You should see `# 1 method for generic function "my_add"`.
 """
 
 # ╔═╡ 0eec43c3-6ca7-4d11-b21c-7d661ef0a3e7
@@ -230,13 +230,29 @@ md"""
 ## 5: Specialization & Dispatch
 
 !!! warning ""
-	1. **Specific Definition:** Now, add a new method to the *same* function name, `my_add`, but constrain the types to Strings only.
-	- `my_add(a::String, b::String) = "$a ... $b"`
-	2. **Check Methods:** Run `methods(my_add)` again. You should now see **2 methods**.
-	3. **Dispatch in Action:**
-	- Run `my_add(5, 5)`. (Julia chooses the generic version).
-	- Run `my_add("A", "B")`. (Julia chooses the specific String version).
-	4. **The Rule:** Julia always executes the **most specific** method that matches the arguments provided.
+	* **Specific Definition:** add a new method to the *same* function name, `my_add`, but constrain the types to Strings only.
+	  - `my_add(a::String, b::String) = "$a ... $b"`
+	* **Check Methods:** Run `methods(my_add)` again. You should now see **2 methods**.
+	* **Dispatch in Action:**
+	  - Execute `my_add(5, 5)`. (Julia chooses the generic version).
+	  - Execute `my_add("A", "B")`. (Julia chooses the specific String version).
+	* **The Rule:** Julia always executes the **most specific** method that matches the arguments provided.
+"""
+
+# ╔═╡ 88e1c20b-5f1d-4a9c-8c4f-61ed72ebc76d
+md"""
+
+## 6: Function Broadcasting
+
+!!! warning ""
+	* Create a function to add and multiply three scalars.
+	* Execute the function for three scalar values.
+	* Construct three vectors of equal length.
+	* Execute the function using those three vectors.
+	* What happens?
+	* Execute the same function, but append a `.` after the name and before the opening parenthesis.
+	  - E.g., myfunc.(...)
+	* What happens now?
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -531,6 +547,7 @@ version = "17.7.0+0"
 # ╟─50f84dd5-7585-482d-bd8e-96b6cabfdbc2
 # ╟─a1ec03ac-f7b4-4499-92e2-c2a047ed3574
 # ╟─0eec43c3-6ca7-4d11-b21c-7d661ef0a3e7
+# ╟─88e1c20b-5f1d-4a9c-8c4f-61ed72ebc76d
 # ╟─83ab9733-5969-4d0c-a3c0-b8f4d2402fde
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

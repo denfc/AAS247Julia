@@ -220,9 +220,9 @@ This is arguably the most important feature for clean, fast code using arrays or
 
 What if you have a vector `A = [1, 2, 3]` and you want to add 1 to every element? Or what if you want to multiply every element in an array by its corresponding element in another array?
 
-The dot (`.`) operator tells Julia: "Apply this operation to _every single element_ of the array." The dot operator is called the **broadcast** operation. As we will see in session 1-4, it applies to more than just arrays.
+The `.` operator is a prefix operator that modifies the behavior of other operators such as `+` and `*`. It tells Julia to. perform an element-wise operation. The `.` operator is called the **broadcast** operator. As we will see in session 1-4, it applies to more than just arrays.
 
-1. `A .+ 1` means `[A[1]+1, A[2]+1, A[3]+1]` $\rightarrow$ `[2, 3, 4]`
+1. `A .+ 1` $\rightarrow$ `[2, 3, 4]`
 2. `A .* B` means element-by-element multiplication.
 
 ## Tuples
@@ -325,11 +325,11 @@ md"""
 # Summary
 
 !!! note ""
-	a) `.*` (dot): broadcast operator, i.e., use for element-wide operations.
-
-	b) `*` (no dot): matix operator, i,e., use for matrix multiplication.
-
-	c) (But also use `*` to join strings.)
+	* `[...]` is the syntax for a literal `Array` comprehension.
+	* `(...)` is the syntax for a literal `Tuple` comprehension.
+	* `(...=..., ...=...)` is the syntax for a literal `NamedTuple` comprehension.
+	* `.*` (dot): broadcast operator, i.e., use for element-wide operations.
+	* `*` (no dot): matix operator, i,e., use for matrix multiplication.
 """
 
 # ╔═╡ e26b69c9-d37d-449d-90d4-cdce4dff2362
@@ -340,42 +340,46 @@ md"""
 
 # ╔═╡ e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
 md"""
-## 1: Creation and Indexing (Column-Major)
+## 1: Array Construction
 !!! warning ""
-	* Create a 3×3 matrix named `M` containing the numbers 1 through 9.
-	  - The integers should progess down the column (i.e., 1, 2, 3 should be in column 1).
-	   - Hint: The function `reshape` may be useful.
-	* Print the element at the 1st row, 3rd column.
-	* What is it?
-	* Print the entire 2nd column of `M`.
-	   - Hint: The slice (`:`) operator may be useful, `M[:, row]`.
+	* Construct a Vector using an array literal with the values 1, 2, 3.
+	* Construct a 3×3 matrix using an array literal with 1, 2, 3 in the first row.
+	* Construct a 3×3 matrix using an array literal with 1, 2, 3 in the first column.
+	* Construct a 3×3 matrix of interger zeros.
+	  - Hint: Use `zeros()`.
+	* Construct a 3×3 matrix of Float32 ones.
+	* Construct a 3×3 matrix of UInt8 filled with the value 8.
+	  - Hint: Use `fill()`.
+	* Construct a 3×3×3 array of Float32 whose values are undefined.
+	  - Hint: Use `Array()` and `undef`.
+	  - Note: This array allocates memory, but does not initilize it, saving time.
+"""
+
+# ╔═╡ 30d5652d-605d-4119-b7e8-9cb8b93ce4a3
+md"""
+## 2: Tuples and NamedTuples
+
+!!! warning ""
+	* Construct a Tuple literal `x` of three integers.
+	* Construct a Tuple literal `y` of three floats.
+	* Multiply `x` times `y`.
+	* Construct a Tuple literal containing an integer, a float, and a string.
+	* Construct a NamedTuple literal with labels `a`, `b`, and `c` and integer, float, and string values.
 """
 
 # ╔═╡ ff17e921-4522-4ab3-8282-9d9aafecdbe9
 md"""
-## 2: Broadcasting and Fusion
+## 3: Broadcasting
 !!! warning ""
-	* Create a 1D vector `x` containing five evenly spaced points from 0 to $\pi$, inclusive.
-	  - Note: `pi` is a built-in constant.
-	  - Hint: The `range()` function might be useful.
-	* Define a simple function `my_poly(x) = x^2 - 2*x + 1`.
-	* Using broadcasting, apply your function `my_poly` to every element in `x`.
-	* Store the result in `y`.
-	* Print both `x` and `y`.
-
+	* Construct a 1D vector `x` containing five evenly spaced points from 0 to $\pi$, inclusive.
+	  - Hint: Use `range()`.
+	  - Note: `π` is a built-in constant.
+	* Construct a 1D vector `y` containing five random values between 1 and 10.
+	  - Hint: use `rand()`.
+	* Multiply element-wise `x` and `y`.
+	* Construct a third 1D vector `z` containing five values.
+	* Evaluate the expression $x + y * z$
 """
-
-# ╔═╡ 23069d06-9d74-4a39-912e-e6372ac03abb
-md"""
-## 3: Array Creation and Slicing
-!!! warning ""
-	* Create a 4×2 matrix named `A` containing the numbers 1-8, filling by columns.
-	  - Hint: `reshape` may be helpful.
-	* Create a 1D Vector named `v` containing the elements 10, 20, 30 using comma (`,`) syntax.
-	* Create a 2×1 Matrix (a column matrix) named `c` containing the elements 40 and 50 using semicolon (`;`) syntax.
-	* Create a new matrix `B` that consists of the last two rows of `A`.
-"""
-
 
 # ╔═╡ e022f21e-7f18-4690-99d4-0141403b3b38
 md"""
@@ -386,28 +390,16 @@ md"""
 	   - `Y = [2 0; 0 2] # This is a scaling matrix.`
 	* Perform matrix multiplication on `X` and `Y`.
 	* Perform element-wise multiplication on `X` and `Y`.
-	* Print both `M` and `E`.
-	* Are `M[1, 1]` and `E[1, 1]` different?
+	* Are the results the same?
 """
 
 # ╔═╡ 1416a80e-dbda-4185-8984-7f5de3c58f02
 md"""
-## 5: Broadcasting and Array Fusion
+## 5: Array Fusion
 !!! warning ""
 	* Create three 1D vectors, `a`, `b`, and `c`, each of length 4.
-	* Using a single, "fused" broadcast expression, calculate $y = {(a^2 + b)}/{c}$
-	* Print `y`.
-"""
-
-# ╔═╡ cc640d51-f3d1-4d9e-bd6d-4fd7aa338f07
-md"""
-## 6: Column-Major Thinking (A Thought Experiment)
-!!! warning ""
-	* Imagine you have a 10,000 × 10,000 matrix called `DATA`.
-	* You need to write a `for` loop to calculate the sum of every element in the second column.
-	* Write this loop.
-	  - The `size` function may be helpful.
-	  - Hint: You only need a single `for` loop.
+	* Using a single, "fused" broadcast expression, calculate $(a^2 + b)/c$.
+	  - Note: `^` (carat) is the exponentiation operator.
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -701,11 +693,10 @@ version = "17.7.0+0"
 # ╟─29e28885-d969-4e27-b5d3-866eb25302ab
 # ╟─e26b69c9-d37d-449d-90d4-cdce4dff2362
 # ╟─e3b1c6c2-5631-42c0-9a1b-d5a5520466c8
+# ╟─30d5652d-605d-4119-b7e8-9cb8b93ce4a3
 # ╟─ff17e921-4522-4ab3-8282-9d9aafecdbe9
-# ╟─23069d06-9d74-4a39-912e-e6372ac03abb
 # ╟─e022f21e-7f18-4690-99d4-0141403b3b38
 # ╟─1416a80e-dbda-4185-8984-7f5de3c58f02
-# ╟─cc640d51-f3d1-4d9e-bd6d-4fd7aa338f07
 # ╟─624bd571-c51e-4f52-848b-7cdefebbd42a
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
