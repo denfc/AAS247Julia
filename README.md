@@ -3,6 +3,7 @@
 [![Rendered Pluto.jl notebooks](https://img.shields.io/badge/Rendered_Pluto.jl_notebooks-blue)](https://denfc.github.io/AAS247Julia/notebooks)
 
 SSID: AAS 247 Winter
+
 Password: AAS247Winter
 
 This code base is using the [Julia Language](https://julialang.org/) and
