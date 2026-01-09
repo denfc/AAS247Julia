@@ -24,7 +24,7 @@ Julia has a strong parallel computing infrastructure that enable high performanc
 
 # Vectorization
 
-All modern CPUs provide vectorization or Single-Instruction-Multiple-Data (**SIMD**) execution. SIMD is when the computer can apply a single instruction to multiple data in a single CPU cycle. For example, consider adding two vectors `A` and `B`. 
+All modern CPUs provide vectorization or Single-Instruction-Multiple-Data (**SIMD**) execution. SIMD is when the computer can apply a single instruction to multiple data in a single CPU cycle. For example, consider adding two vectors `A` and `B`.
 
 The serial computation loops through each value in the two arrays and applies the
 addition operation during each CPU cycle (left figure). Whereas, the vectorized computation loops through groups of values in the two arrays and applies the addition operation during each CPU cycle (right figure), resulting in 2x, 4x, or greater performance improvement depending on the CPU architecture (i.e., AVX, AVX2, AVX512).
@@ -37,7 +37,7 @@ Julia will vectorize array compuations whenever possible and as discussed in ses
 
 # ╔═╡ 4473cae3-9350-4741-8457-6bacb1def61b
 html"""
-<img src="https://github.com/denfc/AAS247Julia/blob/main/data/vectorization.jpeg?raw=true"/>
+<img src="https://github.com/JuliaAstro/AAS247Julia/blob/main/data/vectorization.jpeg?raw=true"/>
 """
 
 # ╔═╡ 54d083d4-3bf8-4ed7-95b5-203e13cc3249
@@ -525,7 +525,7 @@ This means that for each addition clock, we are simultaneously adding four eleme
 md"""
 ## 2: Vectorization Using Packages
 !!! warning ""
-    * 
+    *
 """
 
 # ╔═╡ 3de353d3-ef0c-4e25-b52c-189061adac12
@@ -610,7 +610,7 @@ md"""
 md"""
 ## 3: Threads.@threads
 !!! warning ""
-    * 
+    *
 """
 
 # ╔═╡ e468d9fd-ead0-4ce4-92b1-cb96132f6921
@@ -694,7 +694,7 @@ To determine whether threading is useful, a user should benchmark the code. Addi
 md"""
 ## 4: Thread Issues
 !!! warning ""
-    * 
+    *
 """
 
 # ╔═╡ bd78505c-904c-4e65-9160-6b3ebf02c21e
@@ -826,7 +826,7 @@ The atomic solution is substantially slower than the manual solution. In fact, a
 md"""
 ## 5: High-Level Threads
 !!! warning ""
-    * 
+    *
 """
 
 # ╔═╡ 44ddfdd9-7898-4561-b46a-045bcc1ae467
@@ -861,7 +861,7 @@ is almost as fast as our hand-written example, but requires less understanding o
 md"""
 ## 6: GPUs
 !!! warning ""
-    * 
+    *
 """
 
 # ╔═╡ 799de936-6c6d-402f-93db-771e7ec1ef51
@@ -952,9 +952,9 @@ outlarge_gpu .= xlarge_gpu .+ sin.(ylarge_gpu)
 
 # ╔═╡ cfeda4c2-5881-4ae3-a220-ae8f7511d79f
 md"""
-## N: 
+## N:
 !!! warning ""
-    * 
+    *
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
