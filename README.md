@@ -1,10 +1,11 @@
-# AAS247Julia
+# Materials for JuliaAstro Workshops
 
-[![Rendered Pluto.jl notebooks](https://img.shields.io/badge/Rendered_Pluto.jl_notebooks-blue)](https://juliaastro.org/AAS247Julia/notebooks)
+[![Rendered Pluto.jl notebooks](https://img.shields.io/badge/Rendered_Pluto.jl_notebooks-blue)](https://juliaastro.org/workshop/notebooks)
+
+_Most recently used for the [247th Meeting of the AAS](https://aas.org/meetings/aas247/workshops) in Phoenix, AZ, USA_
 
 SSID: AAS 247 Winter \
 Password: AAS247Winter
-
 
 This code base is using the [Julia Language](https://julialang.org/) and
 [DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
